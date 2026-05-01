@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1532.8
     height: 764.8
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Console
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 37
+  controlID: 95
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -121,14 +121,14 @@ MonoBehaviour:
     y: 419.2
     width: 1167.2
     height: 289.59998
-  m_MinSize: {x: 231, y: 276}
-  m_MaxSize: {x: 10001, y: 10026}
-  m_ActualView: {fileID: 13}
+  m_MinSize: {x: 101, y: 126}
+  m_MaxSize: {x: 4001, y: 4026}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 13}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 38
+  controlID: 39
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 39
+  controlID: 40
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -300,8 +300,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "UnityEditor.MainToolbarWindow\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 0.8
-    y: 50.4
+    x: 0
+    y: 0
     width: 1532.8
     height: 36
   m_SerializedDataModeController:
@@ -385,23 +385,9 @@ MonoBehaviour:
       sizeOverridden: 0
     - dockPosition: 0
       containerId: overlay-toolbar__top
-      displayed: 1
+      displayed: 0
       id: Services/AI
       index: 5
-      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
-      floating: 0
-      collapsed: 0
-      snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 0
-      layout: 4
-      size: {x: 0, y: 0}
-      sizeOverridden: 0
-    - dockPosition: 0
-      containerId: overlay-toolbar__top
-      displayed: 1
-      id: Services/Unity Version Control
-      index: 6
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -537,6 +523,20 @@ MonoBehaviour:
       layout: 4
       size: {x: 0, y: 0}
       sizeOverridden: 0
+    - dockPosition: 0
+      containerId: overlay-toolbar__top
+      displayed: 1
+      id: Services/Unity Version Control
+      index: 6
+      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
+      floating: 0
+      collapsed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      layout: 4
+      size: {x: 0, y: 0}
+      sizeOverridden: 0
     - dockPosition: 1
       containerId: overlay-toolbar__top
       displayed: 0
@@ -608,7 +608,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/NGO_Minimal_Setup
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -618,24 +618,28 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/NGO_Minimal_Setup
+  - Assets
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\mathi\OneDrive\Documents\ProjetsUnity\GameJamV2
+  m_LastProjectPath: C:\Users\leoqu\Desktop\gamejam\src\gamejam\My project
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 82742
+    - m_Data: 63056
     m_LastClickedID:
-      m_Data: 82742
+      m_Data: 63056
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 63954
-    - m_Data: 80290
-    - m_Data: 1000000000
-    - m_Data: 2147483647
+    - m_Data: 62216
+    - m_Data: 62218
+    - m_Data: 62220
+    - m_Data: 62222
+    - m_Data: 62224
+    - m_Data: 62226
+    - m_Data: 62228
+    - m_Data: 62230
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -667,7 +671,16 @@ MonoBehaviour:
     m_SelectedIDs: []
     m_LastClickedID:
       m_Data: 0
-    m_ExpandedIDs: []
+    m_ExpandedIDs:
+    - m_Data: 0
+    - m_Data: 62216
+    - m_Data: 62218
+    - m_Data: 62220
+    - m_Data: 62222
+    - m_Data: 62224
+    - m_Data: 62226
+    - m_Data: 62228
+    - m_Data: 62230
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -695,11 +708,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs:
-    - m_Data: 85272
+    m_SelectedInstanceIDs: []
     m_LastClickedEntityId:
-      m_Data: 85272
-    m_HadKeyboardFocusLastEvent: 1
+      m_Data: 0
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -752,8 +764,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1168
-    y: 86.4
+    x: 1168.2
+    y: 24
     width: 364.6001
     height: 682.8
   m_SerializedDataModeController:
@@ -804,8 +816,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Hierarchy\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 0.8
-    y: 86.4
+    x: 0
+    y: 24
     width: 434.2
     height: 393.2
   m_SerializedDataModeController:
@@ -824,31 +836,11 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs:
-      - m_Data: 85272
+      m_SelectedIDs: []
       m_LastClickedID:
-        m_Data: 85272
+        m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -88310
-      - m_Data: -86996
-      - m_Data: -85908
-      - m_Data: -84950
-      - m_Data: -83948
-      - m_Data: -82952
-      - m_Data: -71660
-      - m_Data: -70126
-      - m_Data: -67398
-      - m_Data: -65616
-      - m_Data: -65288
-      - m_Data: -65064
-      - m_Data: -63320
-      - m_Data: -63102
-      - m_Data: -47280
-      - m_Data: -12
-      - m_Data: 83588
-      - m_Data: 83634
-      - m_Data: 83642
-      - m_Data: 83650
+      - m_Data: -6760
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -896,8 +888,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 436
-    y: 86.4
+    x: 436.2
+    y: 24
     width: 729.99994
     height: 393.2
   m_SerializedDataModeController:
@@ -1318,7 +1310,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: -1.8164725, y: 0.5038452, z: 7.576082}
     speed: 2
-    m_Value: {x: -1.8164726, y: 0.50384504, z: 7.576082}
+    m_Value: {x: -1.8164725, y: 0.5038452, z: 7.576082}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1367,7 +1359,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.20456482, y: 0.7614987, z: -0.2861163, w: -0.54444414}
     speed: 2
-    m_Value: {x: -0.20521706, y: 0.7611514, z: -0.28702858, w: -0.54419583}
+    m_Value: {x: -0.20456392, y: 0.76149535, z: -0.28611505, w: -0.54444176}
   m_Size:
     m_Target: 4.1425385
     speed: 2
@@ -1530,9 +1522,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 503.2
-    width: 1171.8
-    height: 266.8
+    y: 443.2
+    width: 1166.2
+    height: 263.59998
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
