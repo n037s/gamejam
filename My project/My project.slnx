@@ -1,0 +1,5 @@
+﻿<Solution>
+  <Project Path="Blocks.Sessions.Common.csproj" />
+  <Project Path="Blocks.Sessions.csproj" />
+  <Project Path="Blocks.Common.csproj" />
+</Solution>
