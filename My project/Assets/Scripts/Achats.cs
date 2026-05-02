@@ -1,28 +1,33 @@
 using UnityEngine;
 using Unity.Multiplayer.Center.NetcodeForGameObjectsExample;
+using System.Collections.Generic;
 
 public class Achats : MonoBehaviour
 {
 
     //Prix du canon
-    public int prix_bois_canon;
-    public int prix_pierre_canon;
-    public int prix_fer_canon;
+    [SerializeField] private List<int> Prix_bois_canon;
+    [SerializeField] private List<int> Prix_pierre_canon;
+    [SerializeField] private List<int> Prix_fer_canon;
 
+    [SerializeField] private List<int> Prix_bois_murailles;
+    [SerializeField] private List<int> Prix_pierre_murailles;
+    [SerializeField] private List<int> Prix_fer_murailles;
+
+    [SerializeField] private List<int> Prix_bois_moteur;
+    [SerializeField] private List<int> Prix_pierre_moteur;
+    [SerializeField] private List<int> Prix_fer_moteur;
     //Prix des murailles
-    public int prix_bois_murailles;
-    public int prix_pierre_murailles;
-    public int prix_fer_murailles;
-
-        //Prix du moteur
-    public int prix_bois_moteur;
-    public int prix_pierre_moteur;
-    public int prix_fer_moteur;
-
         //Améliorations
-    public int canon_damage_increase;
-    public int Life_increase;
-    public int speed_increase;
+
+    [SerializeField] private List<int> Canon_damage_increase;
+    [SerializeField] private List<int> Life_increase;
+    [SerializeField] private List<int> Speed_increase;
+
+    //Status d'amélioration
+    public int canon_level = 0;
+    public int murailles_level = 0; 
+    public int moteur_level = 0;
 
 
     private Ressources_collector ressourcesCollectorInstance;
@@ -74,21 +79,27 @@ public class Achats : MonoBehaviour
             Debug.LogWarning("AchatCanon appelé avant que le joueur courant soit initialisé.");
             return;
         }
+        if (canon_level >= 3)
+        {
+            Debug.Log("Canon déjà au niveau maximum !");
+            return;
+        }
         //Debug.Log("le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
            
-        if (ressourcesCollectorInstance.compteur_bois >= prix_bois_canon && ressourcesCollectorInstance.compteur_pierre >= prix_pierre_canon && ressourcesCollectorInstance.compteur_fer >= prix_fer_canon)
+        if (ressourcesCollectorInstance.compteur_bois >= Prix_bois_canon[canon_level] && ressourcesCollectorInstance.compteur_pierre >= Prix_pierre_canon[canon_level] && ressourcesCollectorInstance.compteur_fer >= Prix_fer_canon[canon_level])
         {
-            //Le joueur a assez de ressources pour acheter le canon
-            //On va soustraire les ressources du joueur
-            //Debug.Log("Achat du canon possible, le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
-            ressourcesCollectorInstance.compteur_bois -= prix_bois_canon;
-            ressourcesCollectorInstance.compteur_pierre -= prix_pierre_canon;
-            ressourcesCollectorInstance.compteur_fer -= prix_fer_canon;
+
+
+            ressourcesCollectorInstance.compteur_bois -= Prix_bois_canon[canon_level];
+            ressourcesCollectorInstance.compteur_pierre -= Prix_pierre_canon[canon_level];
+            ressourcesCollectorInstance.compteur_fer -= Prix_fer_canon[canon_level];
 
             Debug.Log("Achat du canon effectué, le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
 
-            //On améliore les dégats du canon
-            playerShootInstance.damage += canon_damage_increase;
+            //On améliore les dégats du canon et le niveau du canon
+            playerShootInstance.damage += Canon_damage_increase[canon_level];
+            canon_level += 1;
+
             //bouletManagerInstance.damage 
         
         }
@@ -102,66 +113,81 @@ public class Achats : MonoBehaviour
 
 public void AchatMurailles()
     {
-        //Debug.Log("AchatMurailles method called");
+        //Debug.Log("AchatCanon method called");
         if (ressourcesCollectorInstance == null)
         {
             Debug.LogWarning("AchatMurailles appelé avant que le joueur courant soit initialisé.");
             return;
         }
+        if (murailles_level >= 3)
+        {
+            Debug.Log("Murailles déjà au niveau maximum !");
+            return;
+        }
         //Debug.Log("le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
            
-        if (ressourcesCollectorInstance.compteur_bois >= prix_bois_murailles && ressourcesCollectorInstance.compteur_pierre >= prix_pierre_murailles && ressourcesCollectorInstance.compteur_fer >= prix_fer_murailles)
+        if (ressourcesCollectorInstance.compteur_bois >= Prix_bois_murailles[murailles_level] && ressourcesCollectorInstance.compteur_pierre >= Prix_pierre_murailles[murailles_level] && ressourcesCollectorInstance.compteur_fer >= Prix_fer_murailles[murailles_level])
         {
-            //Le joueur a assez de ressources pour acheter les murailles
-            //On va soustraire les ressources du joueur
-            Debug.Log("Achat des murailles possible, le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
-            ressourcesCollectorInstance.compteur_bois -= prix_bois_murailles;
-            ressourcesCollectorInstance.compteur_pierre -= prix_pierre_murailles;
-            ressourcesCollectorInstance.compteur_fer -= prix_fer_murailles;
 
-            //Debug.Log("Achat des murailles effectué, le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
 
-                //On va améliorer la vie du joueur
-                playerManagerInstance.maxLife += Life_increase;
+            ressourcesCollectorInstance.compteur_bois -= Prix_bois_murailles[murailles_level];
+            ressourcesCollectorInstance.compteur_pierre -= Prix_pierre_murailles[murailles_level];
+            ressourcesCollectorInstance.compteur_fer -= Prix_fer_murailles[murailles_level];
+
+        
+
+            //On améliore les dégats du canon et le niveau du canon
+            playerManagerInstance.maxLife += Life_increase[murailles_level];
+            murailles_level += 1;
+
+            //bouletManagerInstance.damage 
+        
         }
         else
         {
-            //Le joueur n'a pas assez de ressources pour acheter les murailles
-            Debug.Log("Vous n'avez pas assez de ressources pour acheter les murailles !");
+            //Le joueur n'a pas assez de ressources pour acheter le canon
+            Debug.Log("Vous n'avez pas assez de ressources pour acheter le canon !");
         }
 
     }
 
 public void AchatMoteur()
     {
-       // Debug.Log("AchatMoteur method called");
+        //Debug.Log("AchatCanon method called");
         if (ressourcesCollectorInstance == null)
         {
             Debug.LogWarning("AchatMoteur appelé avant que le joueur courant soit initialisé.");
             return;
         }
+        if (moteur_level >= 3)
+        {
+            Debug.Log("Moteur déjà au niveau maximum !");
+            return;
+        }
         //Debug.Log("le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
            
-        if (ressourcesCollectorInstance.compteur_bois >= prix_bois_moteur && ressourcesCollectorInstance.compteur_pierre >= prix_pierre_moteur && ressourcesCollectorInstance.compteur_fer >= prix_fer_moteur)
+        if (ressourcesCollectorInstance.compteur_bois >= Prix_bois_moteur[moteur_level] && ressourcesCollectorInstance.compteur_pierre >= Prix_pierre_moteur[moteur_level] && ressourcesCollectorInstance.compteur_fer >= Prix_fer_moteur[moteur_level])
         {
-            //Le joueur a assez de ressources pour acheter les moteurs
-            //On va soustraire les ressources du joueur
-            Debug.Log("Achat des moteurs possible, le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
-            ressourcesCollectorInstance.compteur_bois -= prix_bois_moteur;
-            ressourcesCollectorInstance.compteur_pierre -= prix_pierre_moteur;
-            ressourcesCollectorInstance.compteur_fer -= prix_fer_moteur;
 
-           
 
-                //On va améliorer la vitesse du joueur
-                clientAuthoritativeMovementInstance.Speed += speed_increase;
+            ressourcesCollectorInstance.compteur_bois -= Prix_bois_moteur[moteur_level];
+            ressourcesCollectorInstance.compteur_pierre -= Prix_pierre_moteur[moteur_level];
+            ressourcesCollectorInstance.compteur_fer -= Prix_fer_moteur[moteur_level];
+
+        
+
+            //On améliore les dégats du canon et le niveau du canon
+            clientAuthoritativeMovementInstance.Speed += Speed_increase[moteur_level];
+            moteur_level += 1;
+
+            //bouletManagerInstance.damage 
+        
         }
         else
         {
-            //Le joueur n'a pas assez de ressources pour acheter les moteurs
-            Debug.Log("Vous n'avez pas assez de ressources pour acheter les moteurs !");
+            //Le joueur n'a pas assez de ressources pour acheter le canon
+            Debug.Log("Vous n'avez pas assez de ressources pour acheter le canon !");
         }
 
     }
-    
 }
