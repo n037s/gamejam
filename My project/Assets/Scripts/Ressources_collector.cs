@@ -18,12 +18,13 @@ public class Ressources_collector : NetworkBehaviour
         compteur_fer = 0;
         compteur_pierre = 0;
 
-        //On va signaler au Display_ressources que le prefab a été créé
+        
 
         PlayerManager playerManagerRef = GetComponent<PlayerManager>();
         
         if (playerManagerRef.isCurrentPlayer)
         {
+            //On va signaler au Display_ressources que le prefab a été créé
             // This method can be called from Ressources_collector to initialize the UI when the prefab is created.
 
             GameObject Panneau = GameObject.FindWithTag("Panneau ressources");
@@ -44,6 +45,9 @@ public class Ressources_collector : NetworkBehaviour
             {
                 Debug.LogError("Panneau object with tag 'Panneau ressources' not found in the scene.");
             }
+
+
+
         }
         
 

@@ -8,6 +8,8 @@ TagManager:
   - Pierre
   - Fer
   - Panneau ressources
+  - Canon
+  - ShopPanel
   layers:
   - Default
   - TransparentFX
