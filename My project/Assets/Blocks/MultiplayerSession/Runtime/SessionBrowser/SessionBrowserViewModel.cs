@@ -154,6 +154,9 @@ namespace Blocks.Sessions
             CanRefresh = true;
         }
 
+        private float m_LastRefreshTime = -999f;
+        private const float k_RefreshCooldown = 5f;
+
         internal async Task UpdateSessionListAsync(int numberOfMaxSessions)
         {
             // if there is no connection to MultiplayerService, do not try to refresh
@@ -166,9 +169,16 @@ namespace Blocks.Sessions
                 return;
             }
 
+            float now = UnityEngine.Time.realtimeSinceStartup;
+            if (now - m_LastRefreshTime < k_RefreshCooldown)
+            {
+                Debug.LogWarning($"Session list refresh on cooldown. Please wait {k_RefreshCooldown}s between refreshes.");
+            }
+
             try
             {
                 CanRefresh = false;
+                m_LastRefreshTime = now;
                 var queryResult = await MultiplayerService.Instance
                     .QuerySessionsAsync(new QuerySessionsOptions
                     {
@@ -191,13 +201,16 @@ namespace Blocks.Sessions
                 }
 
                 ++m_UpdateVersion;
-                CanRefresh = true;
                 // reset selection
                 SelectedSessionIndex = -1;
             }
             catch (Exception ex)
             {
                 Debug.LogError($"Failed to update session list: {ex.Message}");
+            }
+            finally
+            {
+                CanRefresh = true;
             }
         }
 

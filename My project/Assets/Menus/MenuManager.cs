@@ -15,21 +15,26 @@ namespace menu
 
         void Start()
         {
-            setDisplayedMenu(0);
+            foreach (GameObject menu in menus)
+            {
+                menu.SetActive(false);
+            }
+
+            setDisplayedMenu(1);
         }
 
-        void public setDisplayedMenu(int menuID)
+        public void setDisplayedMenu(int menuID)
         {
-            Debug.Log("Setting new menu : " + menuID.ToString());
+            Debug.Log("Setting new menu : " + (menuID-1).ToString());
             
             if (displayedMenu != null)
             {
                 displayedMenu.SetActive(false);
             }
 
-            if (menuID < menus.Count - 1) 
+            if (menuID-1 < menus.Count) 
             {
-                displayedMenu = menus[menuID];
+                displayedMenu = menus[menuID-1];
                 displayedMenu.SetActive(true);
             }
         }

@@ -48,8 +48,11 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.4.5f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Menus\SessionMenuController.cs" />
+    <Compile Include="Assets\GameManager\GameStartManager.cs" />
     <Compile Include="Assets\Menus\MenuManager.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Menus\JoinSessionMenuController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Blocks\Common\Content\composites\chat-message.uxml" />

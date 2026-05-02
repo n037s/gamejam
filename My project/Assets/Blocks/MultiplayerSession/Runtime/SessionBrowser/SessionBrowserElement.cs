@@ -111,11 +111,7 @@ namespace Blocks.Sessions
             GameObject menuManager = GameObject.Find("MenuManager");
             if (menuManager != null)
             {
-                menu.MenuManager script = target.GetComponent<menu.MenuManager>();
-                if (script != null)
-                {
-                    script.setDisplayedMenu(1);
-                }
+                menuManager.SendMessage("setDisplayedMenu", 2);
             }
         }
 

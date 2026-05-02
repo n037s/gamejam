@@ -96,9 +96,13 @@ namespace Blocks.Sessions
                 return;
             }
 
-            _ = m_ViewModel.CreateSessionAsync(SessionSettings.ToSessionOptions());
+            var session = m_ViewModel.CreateSessionAsync(SessionSettings.ToSessionOptions());
 
-            Debug.Log("LEO - let's change the");
+            GameObject menuManager = GameObject.Find("MenuManager");
+            if (menuManager != null)
+            {
+                menuManager.SendMessage("setDisplayedMenu", 2);
+            }
         }
 
         void UpdateBindings()

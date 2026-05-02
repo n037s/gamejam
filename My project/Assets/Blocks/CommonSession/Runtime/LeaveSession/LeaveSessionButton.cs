@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using Blocks.Common;
 using Unity.Properties;
 using UnityEngine.UIElements;
@@ -50,6 +51,13 @@ namespace Blocks.Sessions.Common
         void LeaveSession()
         {
             _ = m_ViewModel.LeaveSession(m_SessionType);
+
+            GameObject menuManager = GameObject.Find("MenuManager");
+            if (menuManager != null)
+            {
+                Debug.Log("Calling setDisplayedMenu");
+                menuManager.SendMessage("setDisplayedMenu", 1);
+            }
         }
 
         void UpdateBindings()

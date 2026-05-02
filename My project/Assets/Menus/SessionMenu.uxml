@@ -43,7 +43,7 @@
                         </Bindings>
                     </Blocks.Sessions.Common.SessionStatusLabel>
                 </engine:VisualElement>
-                <engine:Button text="Start" style="top: 5px; width: 25%;"/>
+                <engine:Button name="StartButton" text="Start" class="blocks-button" style="top: 5px; width: 25%;"/>
             </engine:VisualElement>
         </engine:VisualElement>
     </ui:VisualElement>
