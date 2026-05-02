@@ -1,19 +1,51 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.Netcode;
 
-public class SkinSelector : MonoBehaviour
+public class SkinSelector : NetworkBehaviour
 {
     public List<RuntimeAnimatorController> skins;
     
-    public void Start()
+    private NetworkVariable<int> skinIndex = new NetworkVariable<int>(
+        -1,
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Server
+    );
+
+    public override void OnNetworkSpawn()
     {
-        int skin_number = PlayerPrefs.GetInt("skin_number", -1);
+        skinIndex.OnValueChanged += OnSkinChanged;
 
-        if (skin_number == -1)
+        if (IsOwner)
         {
-            skin_number = UnityEngine.Random.Range(0, skins.Count);
-        }
+            int localSkin = PlayerPrefs.GetInt("skin_number", -1);
+            if (localSkin < 0 || localSkin >= skins.Count)
+                localSkin = UnityEngine.Random.Range(0, skins.Count);
 
-        GetComponent<Animator>().runtimeAnimatorController = skins[skin_number];
+            RequestSetSkinServerRpc(localSkin);
+        }
+        else if (skinIndex.Value >= 0)
+        {
+            ApplySkin(skinIndex.Value);
+        }
+    }
+
+    [ServerRpc]
+    private void RequestSetSkinServerRpc(int index)
+    {
+        skinIndex.Value = Mathf.Clamp(index, 0, skins.Count - 1);
+    }
+
+    private void OnSkinChanged(int oldValue, int newValue)
+    {
+        ApplySkin(newValue);
+    }
+
+    private void ApplySkin(int index)
+    {
+        if (index >= 0 && index < skins.Count)
+        {
+            GetComponent<Animator>().runtimeAnimatorController = skins[index];
+        }
     }
 }

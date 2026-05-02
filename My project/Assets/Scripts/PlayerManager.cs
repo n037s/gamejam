@@ -35,14 +35,6 @@ public class PlayerManager : NetworkBehaviour
     
     void Start()
     {
-        if (isCurrentPlayer)
-        {
-            GetComponent<Renderer>().material.color = Color.blue;
-        }
-        else
-        {
-            GetComponent<Renderer>().material.color = Color.red;
-        }
     }
 
     void Update()

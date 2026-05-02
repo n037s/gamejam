@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b11e642ccd24649be9f50070c82853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LifeBar
-  playerManager: {fileID: 0}
+  playerManager: {fileID: 7764816242052717954}
   fillImage: {fileID: 1433164493207995281}
 --- !u!1 &2412549449670687643
 GameObject:
@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4baf701bea7634e9e766cba3e66841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkinSelector
+  ShowTopMostFoldoutHeaderGroup: 1
   skins:
   - {fileID: 9100000, guid: 63066eb2edfaea5498478d699591d521, type: 2}
   - {fileID: 9100000, guid: 4857a5c513e4a1b489cd20b13ece700c, type: 2}
