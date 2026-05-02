@@ -26,7 +26,10 @@ public class CallOthersOnCreated : MonoBehaviour
                 }
                 else
                 {
+                    //Appel de la méthode onPrefabCreated d'Achats
                     AchatsInstance.onPrefabCreated(this);
+
+    
                     Debug.Log("OnPrefabCreated method called");
                 }
             }

@@ -1,31 +1,31 @@
 
 <ui:UXML xmlns:ui="UnityEngine.UIElements">
 
-    <ui:VisualElement name="RessourcePanel" style="position: absolute; top: 16px; left: 16px; background-color: white; border-radius: 8px; padding: 12px 16px; min-width: 140px;">
+    <ui:VisualElement name="RessourcePanel" style="position: absolute; top: 16px; left: 16px; background-color: white; border-radius: 4px; padding: 6px 8px; min-width: 70px; width: 70px;">
 
-        <ui:Label text="Ressources" style="font-size: 14px; -unity-font-style: bold; color: black; margin-bottom: 8px;"/>
+        <ui:Label text="Ressources" style="font-size: 7px; -unity-font-style: bold; color: black; margin-bottom: 4px;"/>
 
-        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 4px;">
+        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 2px;">
 
-            <ui:Label text="Bois" style="color: black; font-size: 12px;"/>
+            <ui:Label text="Bois" style="color: black; font-size: 6px;"/>
 
-            <ui:Label name="WoodLabel" text="0" style="color: black; font-size: 12px; margin-left: 16px;"/>
+            <ui:Label name="WoodLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px;"/>
 
         </ui:VisualElement>
 
-        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 4px;">
+        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 2px;">
 
-            <ui:Label text="Pierre" style="color: black; font-size: 12px;"/>
+            <ui:Label text="Pierre" style="color: black; font-size: 6px;"/>
 
-            <ui:Label name="StoneLabel" text="0" style="color: black; font-size: 12px; margin-left: 16px;"/>
+            <ui:Label name="StoneLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px;"/>
 
         </ui:VisualElement>
 
         <ui:VisualElement style="flex-direction: row; justify-content: space-between;">
 
-            <ui:Label text="Fer" style="color: black; font-size: 12px;"/>
+            <ui:Label text="Fer" style="color: black; font-size: 6px;"/>
 
-            <ui:Label name="IronLabel" text="0" style="color: black; font-size: 12px; margin-left: 16px;"/>
+            <ui:Label name="IronLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px;"/>
 
         </ui:VisualElement>
 

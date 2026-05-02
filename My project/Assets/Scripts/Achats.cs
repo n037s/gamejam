@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Multiplayer.Center.NetcodeForGameObjectsExample;
 
 public class Achats : MonoBehaviour
 {
@@ -18,8 +19,17 @@ public class Achats : MonoBehaviour
     public int prix_pierre_moteur;
     public int prix_fer_moteur;
 
+        //Améliorations
+    public int canon_damage_increase;
+    public int Life_increase;
+    public int speed_increase;
+
 
     private Ressources_collector ressourcesCollectorInstance;
+
+    private PlayerManager playerManagerInstance;
+    private PlayerShoot playerShootInstance;
+    private ClientAuthoritativeMovement clientAuthoritativeMovementInstance;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -40,6 +50,10 @@ public class Achats : MonoBehaviour
             {
         
                 ressourcesCollectorInstance = player.GetComponent<Ressources_collector>();
+                playerManagerInstance = player.GetComponent<PlayerManager>();
+                playerShootInstance = player.GetComponent<PlayerShoot>();
+                clientAuthoritativeMovementInstance = player.GetComponent<ClientAuthoritativeMovement>();
+
                 Debug.Log("Ressources_collector created");
                 if (ressourcesCollectorInstance == null)
                 {
@@ -54,28 +68,29 @@ public class Achats : MonoBehaviour
     // Méthode appelée par le bouton onClick
     public void AchatCanon()
     {
-        Debug.Log("AchatCanon method called");
+        //Debug.Log("AchatCanon method called");
         if (ressourcesCollectorInstance == null)
         {
             Debug.LogWarning("AchatCanon appelé avant que le joueur courant soit initialisé.");
             return;
         }
-        Debug.Log("le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
+        //Debug.Log("le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
            
         if (ressourcesCollectorInstance.compteur_bois >= prix_bois_canon && ressourcesCollectorInstance.compteur_pierre >= prix_pierre_canon && ressourcesCollectorInstance.compteur_fer >= prix_fer_canon)
         {
             //Le joueur a assez de ressources pour acheter le canon
             //On va soustraire les ressources du joueur
-            Debug.Log("Achat du canon possible, le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
+            //Debug.Log("Achat du canon possible, le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
             ressourcesCollectorInstance.compteur_bois -= prix_bois_canon;
             ressourcesCollectorInstance.compteur_pierre -= prix_pierre_canon;
             ressourcesCollectorInstance.compteur_fer -= prix_fer_canon;
 
             Debug.Log("Achat du canon effectué, le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
 
-            //On va instancier le canon à la position du joueur
-            //GameObject canon = Instantiate(canonPrefab, transform.position, Quaternion.identity);
-            //On peut aussi ajouter une logique pour faire en sorte que le canon soit placé à une position spécifique par rapport au joueur, ou pour faire en sorte que le canon suive le joueur, etc.
+            //On améliore les dégats du canon
+            playerShootInstance.damage += canon_damage_increase;
+            //bouletManagerInstance.damage 
+        
         }
         else
         {
@@ -87,13 +102,13 @@ public class Achats : MonoBehaviour
 
 public void AchatMurailles()
     {
-        Debug.Log("AchatMurailles method called");
+        //Debug.Log("AchatMurailles method called");
         if (ressourcesCollectorInstance == null)
         {
             Debug.LogWarning("AchatMurailles appelé avant que le joueur courant soit initialisé.");
             return;
         }
-        Debug.Log("le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
+        //Debug.Log("le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
            
         if (ressourcesCollectorInstance.compteur_bois >= prix_bois_murailles && ressourcesCollectorInstance.compteur_pierre >= prix_pierre_murailles && ressourcesCollectorInstance.compteur_fer >= prix_fer_murailles)
         {
@@ -104,12 +119,11 @@ public void AchatMurailles()
             ressourcesCollectorInstance.compteur_pierre -= prix_pierre_murailles;
             ressourcesCollectorInstance.compteur_fer -= prix_fer_murailles;
 
-            Debug.Log("Achat des murailles effectué, le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
+            //Debug.Log("Achat des murailles effectué, le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
 
-                //On va instancier les murailles à la position du joueur
-                //GameObject murailles = Instantiate(muraillesPrefab, transform.position, Quaternion.identity);
-                //On peut aussi ajouter une logique pour faire en sorte que le murailles soit placé à une position spécifique par rapport au joueur, ou pour faire en sorte que le murailles suive le joueur, etc.
-            }
+                //On va améliorer la vie du joueur
+                playerManagerInstance.maxLife += Life_increase;
+        }
         else
         {
             //Le joueur n'a pas assez de ressources pour acheter les murailles
@@ -120,13 +134,13 @@ public void AchatMurailles()
 
 public void AchatMoteur()
     {
-        Debug.Log("AchatMoteur method called");
+       // Debug.Log("AchatMoteur method called");
         if (ressourcesCollectorInstance == null)
         {
             Debug.LogWarning("AchatMoteur appelé avant que le joueur courant soit initialisé.");
             return;
         }
-        Debug.Log("le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
+        //Debug.Log("le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
            
         if (ressourcesCollectorInstance.compteur_bois >= prix_bois_moteur && ressourcesCollectorInstance.compteur_pierre >= prix_pierre_moteur && ressourcesCollectorInstance.compteur_fer >= prix_fer_moteur)
         {
@@ -137,12 +151,11 @@ public void AchatMoteur()
             ressourcesCollectorInstance.compteur_pierre -= prix_pierre_moteur;
             ressourcesCollectorInstance.compteur_fer -= prix_fer_moteur;
 
-            Debug.Log("Achat des moteurs effectué, le compteur bois vaut : " + ressourcesCollectorInstance.compteur_bois + " le compteur pierre vaut : " + ressourcesCollectorInstance.compteur_pierre + " le compteur fer vaut : " + ressourcesCollectorInstance.compteur_fer);
+           
 
-                //On va instancier les moteurs à la position du joueur
-                //GameObject moteurs = Instantiate(moteursPrefab, transform.position, Quaternion.identity);
-                //On peut aussi ajouter une logique pour faire en sorte que le moteurs soit placé à une position spécifique par rapport au joueur, ou pour faire en sorte que le moteurs suive le joueur, etc.
-            }
+                //On va améliorer la vitesse du joueur
+                clientAuthoritativeMovementInstance.Speed += speed_increase;
+        }
         else
         {
             //Le joueur n'a pas assez de ressources pour acheter les moteurs

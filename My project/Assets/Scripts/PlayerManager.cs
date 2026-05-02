@@ -9,8 +9,11 @@ public class PlayerManager : NetworkBehaviour
 
     public int armor = 0;
 
+    public int maxLife = 100;
+    private static int maxLifeStart = 100;
+
     public NetworkVariable<int> life = new NetworkVariable<int>(
-        100,
+        maxLifeStart,
         NetworkVariableReadPermission.Everyone,
         NetworkVariableWritePermission.Server
     );
@@ -50,7 +53,7 @@ public class PlayerManager : NetworkBehaviour
     public void SetLife(int value)
     {
         if (IsServer)
-            life.Value = Mathf.Clamp(value, 0, 100);
+            life.Value = Mathf.Clamp(value, 0, maxLife);
         else
             SetLifeServerRpc(value);
     }
@@ -64,7 +67,7 @@ public class PlayerManager : NetworkBehaviour
     public void AddLife(int amount)
     {
         if (IsServer)
-            life.Value = Mathf.Clamp(life.Value + amount, 0, 100);
+            life.Value = Mathf.Clamp(life.Value + amount, 0, maxLife);
         else
             AddLifeServerRpc(amount);
     }
@@ -72,12 +75,12 @@ public class PlayerManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void SetLifeServerRpc(int value)
     {
-        life.Value = Mathf.Clamp(value, 0, 100);
+        life.Value = Mathf.Clamp(value, 0, maxLife);
     }
 
     [ServerRpc(RequireOwnership = false)]
     private void AddLifeServerRpc(int amount)
     {
-        life.Value = Mathf.Clamp(life.Value + amount, 0, 100);
+        life.Value = Mathf.Clamp(life.Value + amount, 0, maxLife);
     }
 }
