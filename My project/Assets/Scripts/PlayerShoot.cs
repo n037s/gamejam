@@ -18,6 +18,7 @@ public class PlayerShoot : NetworkBehaviour
 
     private float _lastFireTime;
     private Camera _camera;
+    public bool isdead = false;
 
     void Start()
     {
@@ -38,6 +39,10 @@ public class PlayerShoot : NetworkBehaviour
             if (IsMouseOverButtons())
             {
                 return; // Ne pas tirer si la souris est sur un bouton
+            }
+            if (isdead)
+            {
+                return; // Ne pas tirer si le joueur est mort
             }
             FireServerRpc(spawnPos, direction);
         }

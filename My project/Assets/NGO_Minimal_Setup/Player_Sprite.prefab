@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 1359132063682571489}
   - component: {fileID: 5207782389866747578}
   - component: {fileID: -9177563801063266133}
+  - component: {fileID: -6850251092505238169}
   m_Layer: 0
   m_Name: Player_Sprite
   m_TagString: Player
@@ -431,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1818696941
+  GlobalObjectIdHash: 3196304859
   InScenePlacedSourceGlobalObjectIdHash: 2187560420
   DeferredDespawnTick: 0
   Ownership: 1
@@ -544,6 +545,11 @@ MonoBehaviour:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0
     m_InternalValue: 100
+  score:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
 --- !u!114 &1359132063682571489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,6 +593,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b64e7d6b1c3bdf479e233de1c4adf52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CallOthersOnCreated
+--- !u!114 &-6850251092505238169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4332898844952181703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d4d424143b4fc4f886d5fdd3a72aa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &6428670978379857748
 GameObject:
   m_ObjectHideFlags: 0

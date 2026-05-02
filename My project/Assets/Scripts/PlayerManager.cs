@@ -1,5 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
+using System.Collections;
+using Unity.Multiplayer.Center.NetcodeForGameObjectsExample;
 
 [RequireComponent(typeof(NetworkObject))]
 public class PlayerManager : NetworkBehaviour
@@ -11,6 +13,9 @@ public class PlayerManager : NetworkBehaviour
 
     public int maxLife = 100;
     private static int maxLifeStart = 100;
+
+    private Rigidbody rb;
+    private bool isFrozen = false;
 
     public NetworkVariable<int> life = new NetworkVariable<int>(
         maxLifeStart,
@@ -92,9 +97,48 @@ public class PlayerManager : NetworkBehaviour
                 killerManager.score.Value += 10;
         }
 
-        // TODO : could not move, grey screen, timer. 
+        rb = GetComponent<Rigidbody>();
+        if (!isFrozen)
+        {
+            Debug.Log("Player is notfrozen");
+            StartCoroutine(FreezeFor10Seconds());
+        }
+     
+
     }
 
+    IEnumerator FreezeFor10Seconds()
+    {
+        Debug.Log("Coroutine lancee");
+        isFrozen = true;
+
+
+        // Immobilise l'objet
+
+        ClientAuthoritativeMovement ClientAuthoritativeMovementInstance = GetComponent<ClientAuthoritativeMovement>();
+        int TempSpeed = ClientAuthoritativeMovementInstance.Speed;
+        ClientAuthoritativeMovementInstance.Speed = 0; 
+
+        //Bloque les tirs
+        PlayerShoot PlayerShootInstance = GetComponent<PlayerShoot>();
+        PlayerShootInstance.isdead = true;
+        GetComponent<Collider>().enabled = false; // Désactive le collider pour éviter les interactions pendant la mort
+
+        yield return new WaitForSeconds(10f);
+
+      
+        //Remet la vitesse d'origine, débloque les tirs et réactive le collider
+
+        ClientAuthoritativeMovementInstance.Speed = TempSpeed;
+        PlayerShootInstance.isdead = false;
+        GetComponent<Collider>().enabled = true;
+
+        //On remet la vie au max
+        life.Value = maxLife; 
+
+
+        isFrozen = false;
+    }
     public void SetScore(int value)
     {
         if (IsServer)
