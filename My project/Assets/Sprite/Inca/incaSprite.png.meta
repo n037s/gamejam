@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 07e3b37c558da6a41808d88191e98632
+guid: c9496063d65bf1d4cb6de008cddd5ec6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "D\xE9placement ville Tolosa_0"
+      name: "D\xE9placement ville Inca_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -112,14 +112,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9b61683b8c53ad42a4a403b4066b180
-      internalID: 868712447
+      spriteID: adc37946abe365a4db8b2723fb05b95d
+      internalID: -780423538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "D\xE9placement ville Tolosa_1"
+      name: "D\xE9placement ville Inca_1"
       rect:
         serializedVersion: 2
         x: 320
@@ -134,14 +134,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73e56a1d726f2d746a87e4223141ff59
-      internalID: 1850469889
+      spriteID: 4f89de97ce4f0e24880954b49ac254da
+      internalID: -730372023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "D\xE9placement ville Tolosa_2"
+      name: "D\xE9placement ville Inca_2"
       rect:
         serializedVersion: 2
         x: 640
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e68d02a5f60fec45b6b51de1cccd2c0
-      internalID: -1852339022
+      spriteID: 2a81a4e2d2f396c4abc856543b57b516
+      internalID: 1138377966
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "D\xE9placement ville Tolosa_3"
+      name: "D\xE9placement ville Inca_3"
       rect:
         serializedVersion: 2
         x: 960
@@ -178,8 +178,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08af3f22939af2d4986467b843cc89b7
-      internalID: -896709560
+      spriteID: 2fe41c0293743f444a4bff2d6f7f2e39
+      internalID: -435507423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "D\xE9placement ville Inca_4"
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eea42b5df8de4f4b8cc1603e340ea01
+      internalID: -1404122194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "D\xE9placement ville Inca_5"
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b33979663a4bfea47988cb4a26b4bfb8
+      internalID: 49413021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "D\xE9placement ville Inca_6"
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62bd0d67f29673649a10c92ad3fd0834
+      internalID: 57371817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "D\xE9placement ville Inca_7"
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 108d0bd7b21f79f49829b5db7c39baa3
+      internalID: -1031784708
       vertices: []
       indices: 
       edges: []
@@ -188,7 +276,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 994a828f6bf10aa4fb274c0f13262318
+    spriteID: 075fa387474f7b845a38e69bdf5b0f7b
     internalID: 0
     vertices: []
     indices: 
@@ -200,10 +288,14 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":320.0,"y":320.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      "D\xE9placement ville Tolosa_0": 868712447
-      "D\xE9placement ville Tolosa_1": 1850469889
-      "D\xE9placement ville Tolosa_2": -1852339022
-      "D\xE9placement ville Tolosa_3": -896709560
+      "D\xE9placement ville Inca_0": -780423538
+      "D\xE9placement ville Inca_1": -730372023
+      "D\xE9placement ville Inca_2": 1138377966
+      "D\xE9placement ville Inca_3": -435507423
+      "D\xE9placement ville Inca_4": -1404122194
+      "D\xE9placement ville Inca_5": 49413021
+      "D\xE9placement ville Inca_6": 57371817
+      "D\xE9placement ville Inca_7": -1031784708
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
