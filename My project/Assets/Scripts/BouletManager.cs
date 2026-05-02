@@ -47,7 +47,7 @@ public class BouletManager : NetworkBehaviour
         PlayerManager player = other.GetComponent<PlayerManager>();
         if (player != null && player.gameObject != _Firerer)
         {
-            player.TakeDamage(_damage);
+            player.TakeDamage(_damage, _Firerer);
             GetComponent<NetworkObject>().Despawn();
         }
     }

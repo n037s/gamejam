@@ -3477,7 +3477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameStartManager
   sessionType: default-session
   maxRelayConnections: 10
-  isDebugMode: 1
+  isDebugMode: 0
 --- !u!4 &1698385164
 Transform:
   m_ObjectHideFlags: 0
