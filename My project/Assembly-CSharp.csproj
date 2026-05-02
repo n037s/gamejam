@@ -51,7 +51,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\LifeBar.cs" />
     <Compile Include="Assets\Scripts\ButtonSpawnAndLoadScene.cs" />
+    <Compile Include="Assets\Scripts\TimerDisplay.cs" />
     <Compile Include="Assets\Scripts\SkinSelector.cs" />
+    <Compile Include="Assets\Scripts\ScoreboardData.cs" />
     <Compile Include="Assets\Menus\SessionMenuController.cs" />
     <Compile Include="Assets\Scripts\Achats.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="Assets\Scripts\Display_ressources.cs" />
     <Compile Include="Assets\GameManager\GameStartManager.cs" />
     <Compile Include="Assets\Menus\MenuManager.cs" />
+    <Compile Include="Assets\Menus\EndGameMenuManager.cs" />
     <Compile Include="Assets\Scripts\Attached_camera.cs" />
     <Compile Include="Assets\Scripts\Death.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
@@ -79,6 +82,7 @@
     <None Include="Assets\Blocks\Common\Content\stylesheets\inputs.uss" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
     <None Include="Assets\UI\Panneau_ressources.uxml" />
+    <None Include="Assets\Menus\EndGameMenu.uxml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Blocks\MultiplayerSession\UI\JoinSessionByCode.uxml" />
     <None Include="Assets\Blocks\CommonSession\UI\SessionInfo.uxml" />
@@ -112,8 +116,10 @@
     <None Include="Assets\Menus\JoinSessionMenu.uxml" />
     <None Include="Assets\Blocks\MultiplayerSession\Scenes\JoinByBrowsing\JoinByBrowsing.uxml" />
     <None Include="Assets\Blocks\Common\Content\stylesheets\list-view.uss" />
+    <None Include="Assets\UI\Timer.uxml" />
     <None Include="Assets\Blocks\Common\Content\composites\card-component.uss" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\UI\Score.uxml" />
     <None Include="Assets\Blocks\Common\Content\stylesheets\copy-session--header.uss" />
     <None Include="Assets\Blocks\MultiplayerSession\UI\JoinSessionByQuickJoin.uxml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

@@ -20,7 +20,11 @@ namespace menu
                 menu.SetActive(false);
             }
 
-            setDisplayedMenu(1);
+            // If we arrived here after a game ended, go straight to the socreboard
+            if (ScoreboardData.HasResults)
+                setDisplayedMenu(3);
+            else
+                setDisplayedMenu(1);
         }
 
         public void setDisplayedMenu(int menuID)

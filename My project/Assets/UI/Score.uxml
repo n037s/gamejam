@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="ResourcePanel" style="position: absolute; top: 7px; left: 110px; background-color: rgba(255, 255, 255, 0); border-radius: 4px; padding: 6px 8px; min-width: 70px; width: 70px; align-items: flex-start; justify-content: space-between; align-self: flex-end; flex-direction: row;">
+        <ui:Label text="Score : " style="font-size: 7px; -unity-font-style: bold; color: black; margin-bottom: 4px;"/>
+        <ui:Label name="ScoreLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px;"/>
+    </ui:VisualElement>
+</ui:UXML>

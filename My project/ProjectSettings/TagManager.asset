@@ -12,6 +12,8 @@ TagManager:
   - ShopPanel
   - Murailles
   - Moteur
+  - ScoreLabel
+  - GameManager
   layers:
   - Default
   - TransparentFX

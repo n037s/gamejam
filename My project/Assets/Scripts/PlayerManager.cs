@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.UIElements;
 using System.Collections;
 using Unity.Multiplayer.Center.NetcodeForGameObjectsExample;
 
@@ -94,7 +95,10 @@ public class PlayerManager : NetworkBehaviour
         {
             PlayerManager killerManager = killer.GetComponent<PlayerManager>();
             if (killerManager != null)
+            {
                 killerManager.score.Value += 10;
+                killerManager.UpdateScore();
+            }
         }
 
         rb = GetComponent<Rigidbody>();
@@ -145,6 +149,7 @@ public class PlayerManager : NetworkBehaviour
             score.Value = value;
         else
             SetScoreServerRpc(value);
+        UpdateScore();
     }
 
     public void AddScore(int amount)
@@ -153,6 +158,38 @@ public class PlayerManager : NetworkBehaviour
             score.Value += amount;
         else
             AddScoreServerRpc(amount);
+        UpdateScore();
+    }
+
+    public void UpdateScore()
+    {
+        if (isCurrentPlayer)
+        {
+            Debug.Log("UpdateScore for main player");
+            GameObject scoreGameObject = GameObject.FindWithTag("ScoreLabel");
+            if (scoreGameObject != null)
+            {
+                Debug.Log("Score game object is found");
+
+                UIDocument uiScore = scoreGameObject.GetComponent<UIDocument>();
+                if (uiScore != null)
+                {
+                    Debug.Log("Ui score found");
+                    var root = uiScore.rootVisualElement;
+                    if (root != null)
+                    {
+                        Debug.Log("root found");
+                        var scoreLabel = root.Q<Label>("ScoreLabel");
+
+                        if (scoreLabel != null)
+                        {
+                            Debug.Log($"scorelabel found, setting : {score.Value.ToString()}");
+                            scoreLabel.text = score.Value.ToString();
+                        }
+                    }
+                }
+            }
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]

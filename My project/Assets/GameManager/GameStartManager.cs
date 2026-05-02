@@ -6,9 +6,22 @@ using Unity.Services.Multiplayer;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
-public class GameStartManager : MonoBehaviour
+public class GameStartManager : NetworkBehaviour
 {
+    [SerializeField] private string endgameSceneName = "JoinSessionMenu";
+
+    private const float GameDuration = 30f; // 5 minutes
+
+    public NetworkVariable<float> timeRemaining = new NetworkVariable<float>(
+        GameDuration, 
+        NetworkVariableReadPermission.Everyone, 
+        NetworkVariableWritePermission.Server
+    );
+
+    private bool gameEnded = false;
+
     [SerializeField] private string sessionType = "default-session";
     [SerializeField] private int maxRelayConnections = 10;
 
@@ -168,5 +181,42 @@ public class GameStartManager : MonoBehaviour
             return prop.Value;
         }
         return null;
+    }
+
+    void Update()
+    {
+        if (!IsServer || gameEnded) return;
+
+        timeRemaining.Value -= Time.deltaTime;
+        if (timeRemaining.Value <= 0f)
+        {
+            timeRemaining.Value = 0f;
+            gameEnded = true;
+            EndGame();
+        }
+    }
+
+    private void EndGame()
+    {
+        Debug.Log("[GameStartManager] Game over !");
+        EndGameClientRpc();
+    }
+
+    [ClientRpc]
+    private void EndGameClientRpc()
+    {
+        Debug.Log("[GameStartManager] Game ended !");
+        
+        ScoreboardData.Clear();
+        foreach (var player in FindObjectsByType<PlayerManager>(FindObjectsSortMode.None))
+        {
+            ScoreboardData.Results.Add(new ScoreboardData.PlayerResult
+            {
+                PlayerName = player.gameObject.name,
+                Score = player.score.Value
+            });
+        }
+
+        SceneManager.LoadScene(endgameSceneName);
     }
 }
