@@ -7,6 +7,8 @@ public class PlayerManager : NetworkBehaviour
     // Boolean value to know if the player is the current player or another guy
     public bool isCurrentPlayer = false;
 
+    public int armor = 0;
+
     public NetworkVariable<int> life = new NetworkVariable<int>(
         100,
         NetworkVariableReadPermission.Everyone,
@@ -51,6 +53,12 @@ public class PlayerManager : NetworkBehaviour
             life.Value = Mathf.Clamp(value, 0, 100);
         else
             SetLifeServerRpc(value);
+    }
+
+    public void TakeDamage(int rawAmount)
+    {
+        int amount = (int)(((100 - armor)/100.0f) * rawAmount);
+        AddLife(-amount);
     }
 
     public void AddLife(int amount)

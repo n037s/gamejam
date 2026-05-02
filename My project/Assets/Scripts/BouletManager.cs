@@ -5,17 +5,18 @@ using Unity.Netcode;
 public class BouletManager : NetworkBehaviour
 {
     [Header("Settings")]
-    public int damage = 10;
     public float lifetime = 10f; // despawn after this duration
 
+    private int _damage = 10;
     private Vector3 _direction;
     private float _speed;
     private float _spawnTime;
 
-    public void Initialize(Vector3 direction, float speed)
+    public void Initialize(Vector3 direction, float speed, int damage)
     {
         _direction = direction.normalized;
         _speed = speed;
+        _damage = damage;
     }
 
     public override void OnNetworkSpawn()
@@ -44,7 +45,7 @@ public class BouletManager : NetworkBehaviour
         PlayerManager player = other.GetComponent<PlayerManager>();
         if (player != null)
         {
-            player.AddLife(-damage);
+            player.TakeDamage(_damage);
             GetComponent<NetworkObject>().Despawn();
         }
     }

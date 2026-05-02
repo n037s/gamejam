@@ -11,6 +11,8 @@ public class PlayerShoot : NetworkBehaviour
     public float fireRate = 0.3f;
     public float spawnOffset = 1.5f;
 
+    public int damage = 10;
+
     private float _lastFireTime;
     private Camera _camera;
 
@@ -58,6 +60,6 @@ public class PlayerShoot : NetworkBehaviour
         netObj.Spawn();
 
         BouletManager boulet = obj.GetComponent<BouletManager>();
-        boulet.Initialize(direction, bouletSpeed);
+        boulet.Initialize(direction, bouletSpeed, damage);
     }
 }
