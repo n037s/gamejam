@@ -1,6 +1,9 @@
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
+
 
 [RequireComponent(typeof(PlayerManager))]
 public class PlayerShoot : NetworkBehaviour
@@ -31,10 +34,45 @@ public class PlayerShoot : NetworkBehaviour
 
             Vector3 direction = GetDirectionToMouse();
             Vector3 spawnPos = transform.position + direction*spawnOffset;
-
+            Debug.Log(IsMouseOverButtons());
+            if (IsMouseOverButtons())
+            {
+                return; // Ne pas tirer si la souris est sur un bouton
+            }
             FireServerRpc(spawnPos, direction);
         }
     }
+
+    private bool IsMouseOverButtons()
+    {
+        GameObject buttonCanon = GameObject.FindWithTag("Canon");
+        GameObject buttonMurailles = GameObject.FindWithTag("Murailles");
+        GameObject buttonMoteur = GameObject.FindWithTag("Moteur");
+
+        if (buttonCanon == null || buttonMurailles == null || buttonMoteur == null)
+        {
+            Debug.LogWarning("One or more buttons not found in the scene.");
+            return false;
+        }
+         // Vérifie si la souris est sur un élément button
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            // Vérifie si l'objet sous la souris est ton bouton
+            if(EventSystem.current.currentSelectedGameObject == buttonCanon){
+                return true;
+            }
+            if(EventSystem.current.currentSelectedGameObject == buttonMurailles){
+                return true;
+            }
+            if(EventSystem.current.currentSelectedGameObject == buttonMoteur){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    
 
     private Vector3 GetDirectionToMouse()
     {

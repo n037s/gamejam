@@ -10,6 +10,8 @@ TagManager:
   - Panneau ressources
   - Canon
   - ShopPanel
+  - Murailles
+  - Moteur
   layers:
   - Default
   - TransparentFX
