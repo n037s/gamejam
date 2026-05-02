@@ -1,6 +1,7 @@
 using UnityEngine;
+using Unity.Netcode; 
 
-public class Ressources_spawner : MonoBehaviour
+public class Ressources_spawner : NetworkBehaviour
 {
 
     [Header("Prefab")]
@@ -13,50 +14,38 @@ public class Ressources_spawner : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-   public void Start()
+    public override void OnNetworkSpawn()
     {
-        Renderer rend = GetComponent<Renderer>();
-        Bounds bounds = rend.bounds;
-        for (int i = 0; i < numberToSpawn_bois; i++)
-        {
-            float randomX_bois = Random.Range(bounds.min.x, bounds.max.x);
-            float randomZ_bois = Random.Range(bounds.min.z, bounds.max.z);
+        // Only the host spawns object and then send them to clients
 
-            Vector3 spawnPosition = new Vector3(
-                randomX_bois,
-                transform.position.y,
-                randomZ_bois
-            );
-            Instantiate(Bois, spawnPosition, Quaternion.identity);
+        if (NetworkManager.Singleton.IsHost)
+        {
+            Renderer rend = GetComponent<Renderer>();
+            Bounds bounds = rend.bounds;
+            
+            SpawnItems(Bois, numberToSpawn_bois, bounds);
+            SpawnItems(Pierre, numberToSpawn_pierre, bounds);
+            SpawnItems(Fer, numberToSpawn_fer, bounds);
         }
-
-        for (int i = 0; i < numberToSpawn_pierre; i++)
+        else
         {
-            float randomX_pierre = Random.Range(bounds.min.x, bounds.max.x);
-            float randomZ_pierre = Random.Range(bounds.min.z, bounds.max.z);
-
-            Vector3 spawnPosition = new Vector3(
-                randomX_pierre,
-                transform.position.y,
-                randomZ_pierre
-            );
-            Instantiate(Pierre, spawnPosition, Quaternion.identity);
-        }
-
-        for (int i = 0; i < numberToSpawn_fer; i++)
-        {
-            float randomX_fer = Random.Range(bounds.min.x, bounds.max.x);
-            float randomZ_fer = Random.Range(bounds.min.z, bounds.max.z);
-
-            Vector3 spawnPosition = new Vector3(
-                randomX_fer,
-                transform.position.y,
-                randomZ_fer
-            );
-            Instantiate(Fer, spawnPosition, Quaternion.identity);
+            Debug.Log("Not the host, do not make spawn items");
         }
     }
 
+    void SpawnItems(GameObject prefab, int count, Bounds bounds)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 pos = new Vector3(
+                Random.Range(bounds.min.x, bounds.max.x),
+                transform.position.y,
+                Random.Range(bounds.min.z, bounds.max.z)
+            );
+            GameObject obj = Instantiate(prefab, pos, Quaternion.identity);
+            obj.GetComponent<NetworkObject>().Spawn();
+        }
+    }
 
     
 }

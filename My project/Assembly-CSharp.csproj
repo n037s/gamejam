@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ButtonSpawnAndLoadScene.cs" />
     <Compile Include="Assets\Menus\SessionMenuController.cs" />
+    <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Display_ressources.cs" />
     <Compile Include="Assets\GameManager\GameStartManager.cs" />
     <Compile Include="Assets\Menus\MenuManager.cs" />

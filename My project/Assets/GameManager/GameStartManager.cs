@@ -21,6 +21,7 @@ public class GameStartManager : MonoBehaviour
     {
         if (isDebugMode)
         {
+            Debug.Log("Starting as host for debugging");
             NetworkManager.Singleton.StartHost();
         }
         else
@@ -168,5 +169,4 @@ public class GameStartManager : MonoBehaviour
         }
         return null;
     }
-
 }

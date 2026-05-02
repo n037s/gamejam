@@ -20,27 +20,10 @@ public class ResourcePanelController : MonoBehaviour
 
     private bool playerFound = false;
 
-    public void OnPrefabCreated()
+    public void OnPrefabCreated(Ressources_collector instance)
     {
-        Debug.Log("OnPrefabCreated method called in ResourcePanelController.");
-        // This method can be called from Ressources_collector to initialize the UI when the prefab is created.
-
-        GameObject Player = GameObject.FindWithTag("Player");
-        if (Player != null)
-        {
-            Ressources_collector_instance = Player.GetComponent<Ressources_collector>();
-            if (Ressources_collector_instance == null)
-            {
-                Debug.LogError("Ressources_collector component not found on the Player object.");
-
-            }
-        }
-        else
-        {
-            Debug.LogError("Player object with tag 'Player' not found in the scene.");
-        }
-        Ressources_collector_instance.GetComponent<Ressources_collector>();
-    
+        Ressources_collector_instance = instance;
+        
         playerFound = true;
         
         RefreshUI();
