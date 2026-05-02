@@ -43,15 +43,29 @@
     <UnityVersion>6000.4.5f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Users\mathi\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.2.2\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.4.5f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.4.5f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.4.5f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ButtonSpawnAndLoadScene.cs" />
+    <Compile Include="Assets\Scripts\Display_ressources.cs" />
+    <Compile Include="Assets\Scripts\Attached_camera.cs" />
     <Compile Include="Assets\Menus\SessionMenuController.cs" />
     <Compile Include="Assets\GameManager\GameStartManager.cs" />
     <Compile Include="Assets\Menus\MenuManager.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\set_color_for_player.cs" />
+    <Compile Include="Assets\Scripts\color_pierre.cs" />
+    <Compile Include="Assets\Scripts\color_fer.cs" />
+    <Compile Include="Assets\Scripts\Ressources_collector.cs" />
+    <Compile Include="Assets\Scripts\Ressources_spawner.cs" />
+    <Compile Include="Assets\Scripts\color_bois.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\UI\Panneau_ressources.uxml" />
+    <None Include="Assets\Scripts\Panneau_ressources.uxml" />
     <Compile Include="Assets\Menus\JoinSessionMenuController.cs" />
   </ItemGroup>
   <ItemGroup>
