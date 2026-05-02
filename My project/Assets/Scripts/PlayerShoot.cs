@@ -60,6 +60,6 @@ public class PlayerShoot : NetworkBehaviour
         netObj.Spawn();
 
         BouletManager boulet = obj.GetComponent<BouletManager>();
-        boulet.Initialize(direction, bouletSpeed, damage);
+        boulet.Initialize(direction, bouletSpeed, damage, this.gameObject);
     }
 }

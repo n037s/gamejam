@@ -11,12 +11,14 @@ public class BouletManager : NetworkBehaviour
     private Vector3 _direction;
     private float _speed;
     private float _spawnTime;
+    private GameObject _Firerer;
 
-    public void Initialize(Vector3 direction, float speed, int damage)
+    public void Initialize(Vector3 direction, float speed, int damage, GameObject Firerer)
     {
         _direction = direction.normalized;
         _speed = speed;
         _damage = damage;
+        _Firerer = Firerer;
     }
 
     public override void OnNetworkSpawn()
@@ -43,7 +45,7 @@ public class BouletManager : NetworkBehaviour
         if (!IsServer) return;
 
         PlayerManager player = other.GetComponent<PlayerManager>();
-        if (player != null)
+        if (player != null && player.gameObject != _Firerer)
         {
             player.TakeDamage(_damage);
             GetComponent<NetworkObject>().Despawn();
