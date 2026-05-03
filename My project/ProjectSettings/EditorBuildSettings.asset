@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JoinSessionMenu.unity
     guid: bc07570770a4fa240b322d7afb29acc4
+    path: Assets/Scenes/JoinSessionMenu.unity
+    guid: bc07570770a4fa240b322d7afb29acc4
   - enabled: 1
     path: Assets/NGO_Minimal_Setup/NGO_Setup.unity
     guid: ed04602aef8d53b43b31d5f787a3cd08

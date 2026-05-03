@@ -1,36 +1,25 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="ResourcePanel" style="position: absolute; top: 16px; left: 16px; background-color: white; border-radius: 4px; padding: 6px 8px; min-width: 70px; width: 70px;">
-        <!-- Section Ressources -->
-        <ui:Label text="Ressources" style="font-size: 7px; -unity-font-style: bold; color: black; margin-bottom: 4px;"/>
-        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 2px;">
-            <ui:Label text="Bois" style="color: black; font-size: 6px;"/>
-            <ui:Label name="WoodLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px;"/>
+    <ui:VisualElement name="ResourcePanel" style="position: absolute; top: 3px; left: auto; background-color: rgba(255, 255, 255, 0); border-radius: 4px; padding: 6px 8px; min-width: 70px; width: 324px; flex-direction: row; height: 44px; right: 460px;">
+        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 2px; height: 100%; width: 16%; top: 5px;">
+            <ui:Label name="WoodLabel" text="0" style="color: black; font-size: 10px; margin-left: 8px; -unity-text-align: middle-left; width: 20%; height: 100%;"/>
         </ui:VisualElement>
-        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 2px;">
-            <ui:Label text="Pierre" style="color: black; font-size: 6px;"/>
-            <ui:Label name="StoneLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px;"/>
+        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 2px; height: 100%; width: 16%; top: 5px;">
+            <ui:Label name="StoneLabel" text="0" style="color: black; font-size: 10px; margin-left: 8px; width: 20%; height: 100%; -unity-text-align: middle-left;"/>
         </ui:VisualElement>
-        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 6px;">
-            <ui:Label text="Fer" style="color: black; font-size: 6px;"/>
-            <ui:Label name="IronLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px;"/>
+        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 6px; width: 15%; height: 100%; top: 5px;">
+            <ui:Label name="IronLabel" text="0" style="color: black; font-size: 10px; margin-left: 8px; -unity-text-align: middle-left; left: 6px;"/>
         </ui:VisualElement>
-
-        <!-- Séparateur -->
-        <ui:VisualElement style="height: 1px; background-color: rgb(200, 200, 200); margin-bottom: 6px;"/>
-
-        <!-- Section Statistiques -->
-        <ui:Label text="Statistiques" style="font-size: 7px; -unity-font-style: bold; color: black; margin-bottom: 4px;"/>
-        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 2px;">
-            <ui:Label text="Vie" style="color: black; font-size: 6px;"/>
-            <ui:Label name="LifeLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px;"/>
+        <ui:VisualElement name="VisualElement" style="flex-direction: row; justify-content: space-between; margin-bottom: 2px; left: 10px; height: 100%; width: 55px;">
+            <ui:Label text="Vie" style="color: black; font-size: 6px; -unity-text-align: upper-left; width: 5px; height: 100%;"/>
+            <ui:Label name="LifeLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px; -unity-text-align: upper-left; width: 25px; height: 100%;"/>
         </ui:VisualElement>
-        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 2px;">
-            <ui:Label text="Dégâts" style="color: black; font-size: 6px;"/>
-            <ui:Label name="DamageLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px;"/>
+        <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 2px; left: 10px; width: 45px; height: 100%;">
+            <ui:Label text="Dégâts" style="color: black; font-size: 6px; -unity-text-align: upper-left; width: 10px; height: 100%;"/>
+            <ui:Label name="DamageLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px; -unity-text-align: upper-left; width: 5px; height: 100%;"/>
         </ui:VisualElement>
-        <ui:VisualElement style="flex-direction: row; justify-content: space-between;">
-            <ui:Label text="Vitesse" style="color: black; font-size: 6px;"/>
-            <ui:Label name="SpeedLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px;"/>
+        <ui:VisualElement style="flex-direction: row; justify-content: space-between; left: 15px; width: 50px; height: 100%;">
+            <ui:Label text="Vitesse" style="color: black; font-size: 6px; -unity-text-align: upper-left; width: 5px; height: 100%;"/>
+            <ui:Label name="SpeedLabel" text="0" style="color: black; font-size: 6px; margin-left: 8px; -unity-text-align: upper-left; height: 100%; width: 10px;"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
