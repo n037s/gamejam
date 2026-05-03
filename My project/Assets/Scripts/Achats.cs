@@ -36,6 +36,8 @@ public class Achats : MonoBehaviour
     private PlayerShoot playerShootInstance;
     private ClientAuthoritativeMovement clientAuthoritativeMovementInstance;
 
+    
+    private UpgradeVisible upgradeVisibleInstance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void onPrefabCreated(CallOthersOnCreated instance)
@@ -58,6 +60,7 @@ public class Achats : MonoBehaviour
                 playerManagerInstance = player.GetComponent<PlayerManager>();
                 playerShootInstance = player.GetComponent<PlayerShoot>();
                 clientAuthoritativeMovementInstance = player.GetComponent<ClientAuthoritativeMovement>();
+                upgradeVisibleInstance = player.GetComponent<UpgradeVisible>();
 
                 Debug.Log("Ressources_collector created");
                 if (ressourcesCollectorInstance == null)
@@ -99,9 +102,15 @@ public class Achats : MonoBehaviour
             //On améliore les dégats du canon et le niveau du canon
             playerShootInstance.damage += Canon_damage_increase[canon_level];
             canon_level += 1;
-
-            //bouletManagerInstance.damage 
-        
+            if (upgradeVisibleInstance != null)
+            {
+                upgradeVisibleInstance.UpdateAttackVisibility(canon_level);
+            }
+            else
+            {
+                Debug.LogError("UpgradeVisible component not found on this GameObject.");
+            }
+                  
         }
         else
         {
@@ -139,10 +148,20 @@ public void AchatMurailles()
             //On améliore les dégats du canon et le niveau du canon
             playerManagerInstance.maxLife += Life_increase[murailles_level];
             murailles_level += 1;
-
-            //bouletManagerInstance.damage 
-        
-        }
+            //upgradeSkinsInstance = GetComponent<UpgradeSkins>();
+            //upgradeSkinsInstance.UpdateDefenseSkin(murailles_level);
+            
+            
+            if (upgradeVisibleInstance != null)
+            {
+                upgradeVisibleInstance.UpdateDefenseVisibility(murailles_level);
+            }
+            else
+            {
+                Debug.LogError("UpgradeVisible component not found on this GameObject.");
+            }
+            Debug.Log("Achat des murailles effectué, le niveeau de def est :" + murailles_level);
+        }   
         else
         {
             //Le joueur n'a pas assez de ressources pour acheter le canon
@@ -180,7 +199,16 @@ public void AchatMoteur()
             clientAuthoritativeMovementInstance.Speed += Speed_increase[moteur_level];
             moteur_level += 1;
 
-            //bouletManagerInstance.damage 
+            if (upgradeVisibleInstance != null)
+            {
+                upgradeVisibleInstance.UpdateSpeedVisibility(moteur_level);
+            }
+            else
+            {
+                Debug.LogError("UpgradeVisible component not found on this GameObject.");
+            }
+
+            
         
         }
         else

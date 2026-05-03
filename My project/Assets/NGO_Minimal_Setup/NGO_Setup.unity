@@ -1351,6 +1351,7 @@ MonoBehaviour:
   canon_level: 0
   murailles_level: 0
   moteur_level: 0
+  defenseVisibleInstance: {fileID: 0}
 --- !u!1 &560667226
 GameObject:
   m_ObjectHideFlags: 0
@@ -3641,7 +3642,7 @@ MonoBehaviour:
     m_InternalValue: 300
   sessionType: default-session
   maxRelayConnections: 20
-  isDebugMode: 0
+  isDebugMode: 1
 --- !u!4 &1698385164
 Transform:
   m_ObjectHideFlags: 0
