@@ -12,7 +12,8 @@ public class PlayerShoot : NetworkBehaviour
     public GameObject bouletPrefab;
     public float bouletSpeed = 15f;
     public float fireRate = 0.3f;
-    public float spawnOffset = 1.5f;
+    public float spawnOffset = 2f;
+    public int yOffset = 2;
 
     public int damage = 10;
 
@@ -34,7 +35,7 @@ public class PlayerShoot : NetworkBehaviour
             _lastFireTime = Time.time;
 
             Vector3 direction = GetDirectionToMouse();
-            Vector3 spawnPos = transform.position + direction*spawnOffset;
+            Vector3 spawnPos = transform.position + direction*spawnOffset + new Vector3(0, yOffset, 0);
             Debug.Log(IsMouseOverButtons());
             if (IsMouseOverButtons())
             {

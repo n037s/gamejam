@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\ScoreDisplay.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
+    <Compile Include="Assets\Menus\BackManager.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\Display_ressources.cs" />
     <Compile Include="Assets\Scripts\PlayerSpawnManager.cs" />
@@ -102,6 +103,7 @@
     <None Include="Assets\Blocks\Common\Content\stylesheets\progressbar.uss" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
     <None Include="Assets\Blocks\MultiplayerSession\UI\SessionBrowser.uxml" />
+    <None Include="Assets\Menus\back.uxml" />
     <None Include="Assets\Blocks\Common\Content\stylesheets\core.uss" />
     <None Include="Assets\Blocks\Common\Content\composites\chat-message.uss" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
