@@ -1,8 +1,8 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement data-source="project://database/Assets/Blocks/MultiplayerSession/Settings/SessionSettings.asset?fileID=11400000&amp;guid=0bf4e1684added44da254017c7fc41b2&amp;type=2#SessionSettings" name="VisualElement" class="blocks-container--horizontal blocks-container--horizontal--grow">
-        <ui:VisualElement template="SessionBrowser" style="height: 372px; width: 45%; position: absolute; left: 5%; top: 10%; bottom: auto; right: auto; align-self: center; align-items: center; justify-content: center;">
-            <ui:VisualElement class="blocks-modal" style="height: 373px; left: 0%; top: 0%;">
-                <ui:Label text="NOM DU JEU" class="blocks-header blocks-header--space-bottom" style="-unity-text-align: upper-center;"/>
+        <ui:VisualElement template="SessionBrowser" style="height: 60%; width: 40%; position: absolute; left: 5%; top: 20%; bottom: auto; right: auto; align-self: center; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement class="blocks-modal" style="height: 373px; left: 0%; top: 0%; background-color: rgba(0, 0, 0, 0);">
+                <ui:Label text="RAPH LA BITE" class="blocks-header blocks-header--space-bottom" style="-unity-text-align: upper-center;"/>
                 <ui:TextField name="PseudoField" placeholder-text="Enter your pseudo" hide-placeholder-on-focus="true" class="blocks-textfield blocks-element--space-right" style="top: 40px; height: 37px; width: 100%; color: rgb(0, 0, 0); -unity-text-outline-color: rgb(255, 255, 255); -unity-background-image-tint-color: rgb(0, 0, 0);"/>
                 <ui:Label text="Create a session" style="top: 70px; -unity-text-align: upper-center;"/>
                 <Blocks.Sessions.CreateSessionElement name="CreateSessionElement" style="height: 125px; width: 428px; align-self: flex-start; position: relative; top: 40px; left: 10px; color: rgb(255, 255, 255);">
@@ -12,8 +12,8 @@
                 </Blocks.Sessions.CreateSessionElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement template="SessionBrowser" style="height: 100%; width: 45%; position: absolute; top: 10%; left: 50%; align-self: flex-end; justify-content: flex-start;">
-            <ui:VisualElement class="blocks-modal" style="height: 373px; top: 0%; left: 0%;">
+        <ui:VisualElement template="SessionBrowser" style="height: 80%; width: 40%; position: absolute; top: 20%; left: 55%; align-self: flex-end; justify-content: flex-start; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement class="blocks-modal" style="height: 373px; top: 0%; left: 0%; background-color: rgba(0, 0, 0, 0);">
                 <ui:Label text="Join a session" class="blocks-header blocks-header--space-bottom" style="-unity-text-align: upper-center;"/>
                 <Blocks.Sessions.SessionBrowserElement name="SessionBrowserElement" fixed-item-height="59" max-sessions-displayed="20" class="blocks-container--stretch" style="height: 319px; width: 392px;">
                     <Bindings>

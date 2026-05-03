@@ -433,6 +433,11 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 4857a5c513e4a1b489cd20b13ece700c, type: 2}
   - {fileID: 9100000, guid: d6764fc2b66fe904ab5b6d5531ed1737, type: 2}
   - {fileID: 9100000, guid: d061b92724863994b983ab6bbd8374b0, type: 2}
+  deadSkins:
+  - {fileID: 9100000, guid: 45c1288d28756cc4c83883ff465ec9ad, type: 2}
+  - {fileID: 9100000, guid: 4407761159b489a44a2775981409947a, type: 2}
+  - {fileID: 9100000, guid: fcd42b9240e9f3a479738d0cd36633e8, type: 2}
+  - {fileID: 9100000, guid: 86e8ae899d60eaa4497b910a6ecf516b, type: 2}
   skinIndex:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
@@ -876,8 +881,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.3
-  m_Height: 1
+  m_Radius: 1.6
+  m_Height: 20
   m_Direction: 2
   m_Center: {x: 0, y: -0.6, z: 0}
 --- !u!54 &6676281247364298131
@@ -1139,6 +1144,7 @@ MonoBehaviour:
   bouletSpeed: 10
   fireRate: 0.3
   spawnOffset: 0.4
+  yOffset: 2
   damage: 10
   isdead: 0
 --- !u!114 &-9177563801063266133

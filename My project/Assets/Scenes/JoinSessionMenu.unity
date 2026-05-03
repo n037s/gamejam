@@ -563,11 +563,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::menu.BackManager
   gifFrames:
-  - {fileID: -901912484, guid: 2a18bc02d2e58d348b2fd403ca8f2707, type: 3}
-  - {fileID: 2074738561, guid: 2a18bc02d2e58d348b2fd403ca8f2707, type: 3}
-  - {fileID: 1790703467, guid: 2a18bc02d2e58d348b2fd403ca8f2707, type: 3}
-  - {fileID: 1751382153, guid: 2a18bc02d2e58d348b2fd403ca8f2707, type: 3}
-  - {fileID: -218864662, guid: 2a18bc02d2e58d348b2fd403ca8f2707, type: 3}
+  - {fileID: -1139163185, guid: 77e90d7931decb74b841c3fe5f844ac1, type: 3}
+  - {fileID: -646134075, guid: 77e90d7931decb74b841c3fe5f844ac1, type: 3}
+  - {fileID: 63690711, guid: 77e90d7931decb74b841c3fe5f844ac1, type: 3}
+  - {fileID: -1936298768, guid: 77e90d7931decb74b841c3fe5f844ac1, type: 3}
+  - {fileID: -1312463137, guid: 77e90d7931decb74b841c3fe5f844ac1, type: 3}
   frameDelay: 0.2
 --- !u!114 &652590853
 MonoBehaviour:

@@ -5,6 +5,7 @@ using Unity.Netcode;
 public class SkinSelector : NetworkBehaviour
 {
     public List<RuntimeAnimatorController> skins;
+    public List<RuntimeAnimatorController> deadSkins;
     
     public NetworkVariable<int> skinIndex = new NetworkVariable<int>(
         -1,
@@ -30,6 +31,16 @@ public class SkinSelector : NetworkBehaviour
         }
     }
 
+    public void setDeadSkin()
+    {
+        ApplyDeadSkin(skinIndex.Value);
+    }
+
+    public void setNormalSkin()
+    {
+        ApplySkin(skinIndex.Value);
+    }
+
     [ServerRpc]
     private void RequestSetSkinServerRpc(int index)
     {
@@ -46,6 +57,32 @@ public class SkinSelector : NetworkBehaviour
         if (index >= 0 && index < skins.Count)
         {
             GetComponent<Animator>().runtimeAnimatorController = skins[index];
+
+            // Grece and Incas
+            if (index == 0 || index == 3)
+            {
+                this.transform.localPosition = new Vector3(0, 0.3f, 0);
+            }
+
+            // Tolosa
+            if (index == 2)
+            {
+                this.transform.localPosition = new Vector3(0, -0.9f, 0);
+            }
+
+            // Kulture
+            if (index == 1)
+            {
+                this.transform.localPosition = new Vector3(0, -0.25f, 0);
+            }
+        }
+    }
+
+    private void ApplyDeadSkin(int index)
+    {
+        if (index >= 0 && index < skins.Count)
+        {
+            GetComponent<Animator>().runtimeAnimatorController = deadSkins[index];
 
             // Grece and Incas
             if (index == 0 || index == 3)
