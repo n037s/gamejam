@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7420316389861370148}
   - component: {fileID: 7042216289869551795}
-  - component: {fileID: 6941162963663594672}
   - component: {fileID: 677627889956172878}
   m_Layer: 0
   m_Name: Fer
@@ -58,18 +57,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &6941162963663594672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5227953925486582226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ac4b666d6354d40a4680f356ed2c94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!114 &677627889956172878
 MonoBehaviour:
   m_ObjectHideFlags: 0

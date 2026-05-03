@@ -127,9 +127,12 @@ public class Achats : MonoBehaviour
             playerShootInstance.damage += Canon_damage_increase[canon_level];
             canon_level += 1;
 
+            if (canon_level <3) // Vérifie que le moteur n'est pas déjà au niveau maximum avant de mettre à jour les prix
+            {
             CanonBoisText.text = Prix_bois_canon[canon_level].ToString();
             CanonPierreText.text = Prix_pierre_canon[canon_level].ToString();
             CanonFerText.text = Prix_fer_canon[canon_level].ToString();
+            }
 
             if (upgradeVisibleInstance != null)
             {
@@ -177,11 +180,12 @@ public void AchatMurailles()
             //On améliore les dégats du canon et le niveau du canon
             playerManagerInstance.maxLife += Life_increase[murailles_level];
             murailles_level += 1;
-
+            if (murailles_level <3) // Vérifie que le moteur n'est pas déjà au niveau maximum avant de mettre à jour les prix
+            {
             MurBoisText.text = Prix_bois_murailles[murailles_level].ToString();
             MurPierreText.text = Prix_pierre_murailles[murailles_level].ToString();
             MurFerText.text = Prix_fer_murailles[murailles_level].ToString();
-
+            }
             //upgradeSkinsInstance = GetComponent<UpgradeSkins>();
             //upgradeSkinsInstance.UpdateDefenseSkin(murailles_level);
             
@@ -232,13 +236,16 @@ public void AchatMoteur()
             //On améliore les dégats du canon et le niveau du canon
             clientAuthoritativeMovementInstance.Speed += Speed_increase[moteur_level];
             moteur_level += 1;
- 
+
+            if (moteur_level <3) // Vérifie que le moteur n'est pas déjà au niveau maximum avant de mettre à jour les prix
+            {
             MoteurBoisText.text = Prix_bois_moteur[moteur_level].ToString();
             MoteurPierreText.text = Prix_pierre_moteur[moteur_level].ToString();
             MoteurFerText.text = Prix_fer_moteur[moteur_level].ToString();
-
+            }
             if (upgradeVisibleInstance != null)
             {
+                Debug.Log("Calling UpdateSpeedVisibility with moteur_level: " + moteur_level);
                 upgradeVisibleInstance.UpdateSpeedVisibility(moteur_level);
             }
             else

@@ -534,7 +534,7 @@ MonoBehaviour:
   m_DisconnectTimeoutMS: 30000
   ConnectionData:
     Address: 127.0.0.1
-    Port: 14
+    Port: 78
     WebSocketPath: /
     ServerListenAddress: 127.0.0.1
     ClientBindPort: 0
@@ -1209,7 +1209,7 @@ MonoBehaviour:
   Prix_fer_moteur: 000000000300000005000000
   Canon_damage_increase: 0a0000001400000028000000
   Life_increase: 14000000280000003c000000
-  Speed_increase: 05000000050000000a000000
+  Speed_increase: 010000000200000004000000
   canon_level: 0
   murailles_level: 0
   moteur_level: 0
@@ -1534,7 +1534,7 @@ MonoBehaviour:
   Bois: {fileID: 1565272437015972324, guid: 8ba1032f0da0dfa4d9380635fa1b39e3, type: 3}
   Pierre: {fileID: 3270188783467112919, guid: 86d803f63a8d05947ba85d8874eda496, type: 3}
   Fer: {fileID: 5227953925486582226, guid: 8be4ba56f91dd994691362c138644f24, type: 3}
-  numberToSpawn_bois: 542
+  numberToSpawn_bois: 540
   numberToSpawn_pierre: 360
   numberToSpawn_fer: 96
 --- !u!64 &656912758
@@ -1626,7 +1626,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 688033842}
