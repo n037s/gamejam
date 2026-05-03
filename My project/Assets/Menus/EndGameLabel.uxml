@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement data-source="project://database/Assets/Blocks/MultiplayerSession/Settings/SessionSettings.asset?fileID=11400000&amp;guid=0bf4e1684added44da254017c7fc41b2&amp;type=2#SessionSettings" name="VisualElement" class="blocks-container--horizontal blocks-container--horizontal--grow" style="width: 100%; height: 100%;">
+        <ui:Label text="Esc to Quit" style="bottom: 0; position: absolute; left: 0%; -unity-font-style: bold; color: rgb(255, 255, 255);"/>
+    </ui:VisualElement>
+</ui:UXML>

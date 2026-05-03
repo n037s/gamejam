@@ -59,7 +59,9 @@
     <Compile Include="Assets\Scripts\ScoreDisplay.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\Display_ressources.cs" />
+    <Compile Include="Assets\Scripts\PlayerSpawnManager.cs" />
     <Compile Include="Assets\GameManager\GameStartManager.cs" />
     <Compile Include="Assets\Menus\MenuManager.cs" />
     <Compile Include="Assets\Menus\EndGameMenuManager.cs" />
@@ -131,6 +133,7 @@
     <None Include="Assets\Blocks\Common\Content\stylesheets\modals.uss" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Blocks\Common\Content\composites\numeric-list-element.uss" />
+    <None Include="Assets\Menus\EndGameLabel.uxml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>

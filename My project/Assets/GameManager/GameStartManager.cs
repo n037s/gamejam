@@ -94,6 +94,7 @@ public class GameStartManager : NetworkBehaviour
             // 1. Clear any stale relay code from a previous run so clients don't pick it up
             var hostSession = session.AsHost();
             hostSession.SetProperty(k_RelayJoinCodeKey, new SessionProperty("", VisibilityPropertyOptions.Member));
+            hostSession.SetProperty("GameState", new SessionProperty("", VisibilityPropertyOptions.Member));
             await hostSession.SavePropertiesAsync();
             
             // 2. Allocate relay server

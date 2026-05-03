@@ -1639,6 +1639,7 @@ GameObject:
   - component: {fileID: 656912758}
   - component: {fileID: 656912762}
   - component: {fileID: 656912757}
+  - component: {fileID: 656912763}
   m_Layer: 0
   m_Name: MapPlane
   m_TagString: Map
@@ -1784,6 +1785,19 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &656912763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656912756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7927cc20bc612c34bbf77b6c6cd1145c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawnManager
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &848301753
 GameObject:
   m_ObjectHideFlags: 0
@@ -3599,6 +3613,7 @@ GameObject:
   - component: {fileID: 1698385164}
   - component: {fileID: 1698385165}
   - component: {fileID: 1698385163}
+  - component: {fileID: 1698385166}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -3668,6 +3683,19 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &1698385166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698385162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a22da6e13d0ca24985c755992470e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputManager
+  sessionType: default-session
 --- !u!1 &1845201704
 GameObject:
   m_ObjectHideFlags: 0
