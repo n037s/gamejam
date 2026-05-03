@@ -189,9 +189,6 @@ public class PlayerManager : NetworkBehaviour
         if (IsServer)
             life.Value = maxLife;
 
-        SkinSelector skinSelectorRef = transform.GetChild(0).GetComponent<SkinSelector>();
-        skinSelectorRef.setNormalSkin();
-
 
         isFrozen = false;
     }
@@ -228,6 +225,9 @@ public class PlayerManager : NetworkBehaviour
     [ClientRpc]
     private void FreezePlayerClientRpc()
     {
+        SkinSelector skinSelectorRef = transform.GetChild(0).GetComponent<SkinSelector>();
+        skinSelectorRef.setNormalSkin();
+        
         if (!isFrozen)
             StartCoroutine(FreezeFor10Seconds());
     }
