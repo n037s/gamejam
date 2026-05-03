@@ -50,7 +50,8 @@ public class LifeBar : MonoBehaviour
     {
         if (fillImage != null)
         {
-            fillImage.fillAmount = Mathf.Clamp01(lifeValue / 100f);
+
+            fillImage.fillAmount = Mathf.Clamp01(((float)lifeValue )/ playerManager.networkMaxLife.Value);
         }
     }
 

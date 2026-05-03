@@ -13,9 +13,16 @@ public class SkinSelector : NetworkBehaviour
         NetworkVariableWritePermission.Server
     );
 
+    public NetworkVariable<bool> networkIsDead = new NetworkVariable<bool>(
+        false, 
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Server
+    );
+
     public override void OnNetworkSpawn()
     {
         skinIndex.OnValueChanged += OnSkinChanged;
+        networkIsDead.OnValueChanged += OnIsDeadChanged;
 
         if (IsOwner)
         {
@@ -29,16 +36,27 @@ public class SkinSelector : NetworkBehaviour
         {
             ApplySkin(skinIndex.Value);
         }
+
+        if (networkIsDead.Value)
+            ApplyDeadSkin(skinIndex.Value);
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        skinIndex.OnValueChanged -= OnSkinChanged;
+        networkIsDead.OnValueChanged -= OnIsDeadChanged;
     }
 
     public void setDeadSkin()
     {
-        ApplyDeadSkin(skinIndex.Value);
+        if (IsServer)
+            networkIsDead.Value = true;
     }
 
     public void setNormalSkin()
     {
-        ApplySkin(skinIndex.Value);
+        if (IsServer)
+            networkIsDead.Value = false;
     }
 
     [ServerRpc]
@@ -50,6 +68,14 @@ public class SkinSelector : NetworkBehaviour
     private void OnSkinChanged(int oldValue, int newValue)
     {
         ApplySkin(newValue);
+    }
+
+    private void OnIsDeadChanged(bool oldValue, bool newValue)
+    {
+        if (newValue)
+            ApplyDeadSkin(skinIndex.Value);
+        else
+            ApplySkin(skinIndex.Value);
     }
 
     private void ApplySkin(int index)

@@ -37,12 +37,31 @@ public class PlayerManager : NetworkBehaviour
         NetworkVariableWritePermission.Server
     );
 
+    public NetworkVariable<int> canonLevel = new NetworkVariable<int>(
+        0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> muraillesLevel = new NetworkVariable<int>(
+        0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> moteurLevel = new NetworkVariable<int>(
+        0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    public NetworkVariable<int> networkMaxLife = new NetworkVariable<int>(
+        maxLifeStart, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     public override void OnNetworkSpawn()
     {
         isCurrentPlayer = IsOwner;
 
         score.OnValueChanged += OnScoreChanged;
         networkPlayerName.OnValueChanged += OnPlayerNameChanged;
+        canonLevel.OnValueChanged += OnCanonLevelChanged;
+        muraillesLevel.OnValueChanged += OnMuraillesLevelChanged;
+        moteurLevel.OnValueChanged += OnMoteurLevelChanged;
+        networkMaxLife.OnValueChanged += OnNetworkMaxLifeChanged;
+
+        if (canonLevel.Value > 0) GetComponent<UpgradeVisible>()?.UpdateAttackVisibility(canonLevel.Value);
+        if (muraillesLevel.Value > 0) GetComponent<UpgradeVisible>()?.UpdateDefenseVisibility(muraillesLevel.Value);
+        if (moteurLevel.Value > 0) GetComponent<UpgradeVisible>()?.UpdateSpeedVisibility(moteurLevel.Value);
+        maxLife = networkMaxLife.Value;
 
         // Apply name that is already synced. 
         gameObject.name = networkPlayerName.Value.ToString();
@@ -77,6 +96,10 @@ public class PlayerManager : NetworkBehaviour
     {
         score.OnValueChanged -= OnScoreChanged;
         networkPlayerName.OnValueChanged -= OnPlayerNameChanged;
+        canonLevel.OnValueChanged -= OnCanonLevelChanged;
+        muraillesLevel.OnValueChanged -= OnMuraillesLevelChanged;
+        moteurLevel.OnValueChanged -= OnMoteurLevelChanged;
+        networkMaxLife.OnValueChanged -= OnNetworkMaxLifeChanged;
         
         GameObject scorePanel = GameObject.FindWithTag("ScorePanel");
         if (scorePanel != null)
@@ -91,6 +114,26 @@ public class PlayerManager : NetworkBehaviour
     {
     }
 
+    private void OnCanonLevelChanged(int prev, int next)
+    {
+        GetComponent<UpgradeVisible>()?.UpdateAttackVisibility(next);
+    }
+
+    private void OnMuraillesLevelChanged(int prev, int next)
+    {
+        GetComponent<UpgradeVisible>()?.UpdateDefenseVisibility(next);
+    }
+
+    private void OnMoteurLevelChanged(int prev, int next)
+    {
+        GetComponent<UpgradeVisible>()?.UpdateSpeedVisibility(next);
+    }
+
+    private void OnNetworkMaxLifeChanged(int prev, int next)
+    {
+        maxLife = next;
+    }
+
     void Start()
     {
     }
@@ -103,7 +146,7 @@ public class PlayerManager : NetworkBehaviour
     public void SetLife(int value)
     {
         if (IsServer)
-            life.Value = Mathf.Clamp(value, 0, maxLife);
+            life.Value = Mathf.Clamp(value, 0, networkMaxLife.Value);
         else
             SetLifeServerRpc(value);
     }
@@ -118,7 +161,7 @@ public class PlayerManager : NetworkBehaviour
     {
         if (IsServer)
         {
-            life.Value = Mathf.Clamp(life.Value + amount, 0, maxLife);
+            life.Value = Mathf.Clamp(life.Value + amount, 0, networkMaxLife.Value);
 
             if (life.Value == 0)
                 Death(takenFrom);
@@ -187,7 +230,14 @@ public class PlayerManager : NetworkBehaviour
 
         //On remet la vie au max
         if (IsServer)
-            life.Value = maxLife;
+        {
+            life.Value = networkMaxLife.Value;
+
+            // Restore normal skin
+            SkinSelector skinSelectorRef = transform.GetChild(0).GetComponent<SkinSelector>();
+            skinSelectorRef.setNormalSkin();
+
+        }
 
 
         isFrozen = false;
@@ -225,9 +275,6 @@ public class PlayerManager : NetworkBehaviour
     [ClientRpc]
     private void FreezePlayerClientRpc()
     {
-        SkinSelector skinSelectorRef = transform.GetChild(0).GetComponent<SkinSelector>();
-        skinSelectorRef.setNormalSkin();
-        
         if (!isFrozen)
             StartCoroutine(FreezeFor10Seconds());
     }
@@ -242,13 +289,13 @@ public class PlayerManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void SetLifeServerRpc(int value)
     {
-        life.Value = Mathf.Clamp(value, 0, maxLife);
+        life.Value = Mathf.Clamp(value, 0, networkMaxLife.Value);
     }
 
     [ServerRpc(RequireOwnership = false)]
     private void AddLifeServerRpc(int amount, ulong sourceNetworkObjectId = ulong.MaxValue)
     {
-        life.Value = Mathf.Clamp(life.Value + amount, 0, maxLife);
+        life.Value = Mathf.Clamp(life.Value + amount, 0, networkMaxLife.Value);
         if (life.Value == 0)
         {
             GameObject source = null;

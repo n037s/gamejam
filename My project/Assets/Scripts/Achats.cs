@@ -134,14 +134,7 @@ public class Achats : MonoBehaviour
             CanonFerText.text = Prix_fer_canon[canon_level].ToString();
             }
 
-            if (upgradeVisibleInstance != null)
-            {
-                upgradeVisibleInstance.UpdateAttackVisibility(canon_level);
-            }
-            else
-            {
-                Debug.LogError("UpgradeVisible component not found on this GameObject.");
-            }
+            playerManagerInstance.canonLevel.Value = canon_level;
                   
         }
         else
@@ -178,7 +171,7 @@ public void AchatMurailles()
         
 
             //On améliore les dégats du canon et le niveau du canon
-            playerManagerInstance.maxLife += Life_increase[murailles_level];
+            playerManagerInstance.networkMaxLife.Value += Life_increase[murailles_level];
             murailles_level += 1;
             if (murailles_level <3) // Vérifie que le moteur n'est pas déjà au niveau maximum avant de mettre à jour les prix
             {
@@ -186,18 +179,8 @@ public void AchatMurailles()
             MurPierreText.text = Prix_pierre_murailles[murailles_level].ToString();
             MurFerText.text = Prix_fer_murailles[murailles_level].ToString();
             }
-            //upgradeSkinsInstance = GetComponent<UpgradeSkins>();
-            //upgradeSkinsInstance.UpdateDefenseSkin(murailles_level);
             
-            
-            if (upgradeVisibleInstance != null)
-            {
-                upgradeVisibleInstance.UpdateDefenseVisibility(murailles_level);
-            }
-            else
-            {
-                Debug.LogError("UpgradeVisible component not found on this GameObject.");
-            }
+            playerManagerInstance.muraillesLevel.Value = murailles_level;
             Debug.Log("Achat des murailles effectué, le niveeau de def est :" + murailles_level);
         }   
         else
@@ -243,15 +226,8 @@ public void AchatMoteur()
             MoteurPierreText.text = Prix_pierre_moteur[moteur_level].ToString();
             MoteurFerText.text = Prix_fer_moteur[moteur_level].ToString();
             }
-            if (upgradeVisibleInstance != null)
-            {
-                Debug.Log("Calling UpdateSpeedVisibility with moteur_level: " + moteur_level);
-                upgradeVisibleInstance.UpdateSpeedVisibility(moteur_level);
-            }
-            else
-            {
-                Debug.LogError("UpgradeVisible component not found on this GameObject.");
-            }
+            
+            playerManagerInstance.moteurLevel.Value = moteur_level;
 
             
         

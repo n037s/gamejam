@@ -45,7 +45,7 @@ public class PlayerShoot : NetworkBehaviour
             {
                 return; // Ne pas tirer si le joueur est mort
             }
-            FireServerRpc(spawnPos, direction);
+            FireServerRpc(spawnPos, direction, damage);
         }
     }
 
@@ -97,7 +97,7 @@ public class PlayerShoot : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void FireServerRpc(Vector3 spawnPos, Vector3 direction)
+    private void FireServerRpc(Vector3 spawnPos, Vector3 direction, int damage)
     {
         GameObject obj = Instantiate(bouletPrefab, spawnPos, Quaternion.LookRotation(direction));
         NetworkObject netObj = obj.GetComponent<NetworkObject>();
