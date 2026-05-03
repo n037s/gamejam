@@ -14,6 +14,7 @@ TagManager:
   - Moteur
   - ScoreLabel
   - GameManager
+  - ScorePanel
   layers:
   - Default
   - TransparentFX

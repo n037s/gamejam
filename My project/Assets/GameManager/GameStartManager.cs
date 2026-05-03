@@ -6,6 +6,7 @@ using Unity.Services.Multiplayer;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using System.Threading.Tasks;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GameStartManager : NetworkBehaviour
@@ -28,6 +29,15 @@ public class GameStartManager : NetworkBehaviour
     private const string k_RelayJoinCodeKey = "RelayJoinCode";
 
     public bool isDebugMode = false;
+
+    private const int MaxReconnectAttemps = 5; 
+    private const float ReconnectBaseDelaySeconds = 2f;
+    private const int MaxRelayJoinAttemps = 3;
+
+    private ISession _currentSession;
+    private bool _isClient;
+    private int _reconnectAttempts = 0;
+    private bool _isReconnecting = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     async void Start()
@@ -120,6 +130,7 @@ public class GameStartManager : NetworkBehaviour
 
     private async Task StartAsClientAsync(ISession session)
     {
+        _currentSession = session;
         try
         {
             // 1. Wait for the host to publish the relay join code
@@ -148,11 +159,32 @@ public class GameStartManager : NetworkBehaviour
             Debug.Log($"[GameStartManager] Got relay join code: {joinCode}");
 
             // 2. Join the relay allocation
-            JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+            JoinAllocation joinAllocation = null;
+            System.Exception lastJoinException = null;
+
+            for (int attempt = 1; attempt <= MaxRelayJoinAttemps; attempt++)
+            {
+                try
+                {
+                    joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+                    lastJoinException = null;
+                    break;
+                }
+                catch (System.Exception e)
+                {
+                    lastJoinException = e;
+                    Debug.LogWarning("Relay join attempt failed.");
+                    if (attempt < MaxRelayJoinAttemps)
+                        await Task.Delay(1000*attempt);
+                }
+            }
+            if (lastJoinException != null)
+                throw lastJoinException;
+            
 
             // 3. Configure UTP with relay data and start as Client
             var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
-            transport.SetRelayServerData( new RelayServerData(
+            transport.SetRelayServerData(new RelayServerData(
                 joinAllocation.RelayServer.IpV4,
                 (ushort)joinAllocation.RelayServer.Port,
                 joinAllocation.AllocationIdBytes,
@@ -162,7 +194,9 @@ public class GameStartManager : NetworkBehaviour
                 isSecure: false
             ));
             NetworkManager.Singleton.OnClientConnectedCallback += id => Debug.Log($"[GameStartManager] client connected to host with id {id}");
-            NetworkManager.Singleton.OnClientDisconnectCallback += id => Debug.Log($"[GameStartManager] client diconnected to host with id {id}");
+            _isClient = true;
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
+
             NetworkManager.Singleton.StartClient();
 
             Debug.Log("[GameStartManager] Started as NGO Client.");
@@ -171,6 +205,45 @@ public class GameStartManager : NetworkBehaviour
         {
             Debug.LogError($"[GameStartManager] Failed to start as client: {e.GetType().Name}: {e.Message}\n{e.StackTrace}");
         }
+    }
+
+    private void OnClientDisconnected(ulong clientId)
+    {
+        if (!_isClient || gameEnded || _isReconnecting) return;
+        _isClient = false;
+        Debug.LogWarning("Disconnected from host, starting reconnection ... ");
+        StartCoroutine(ReconnectCoroutine());
+    }
+
+    private IEnumerator ReconnectCoroutine()
+    {
+        _isReconnecting = true;
+        _reconnectAttempts++;
+
+        if (_reconnectAttempts > MaxReconnectAttemps)
+        {
+            Debug.LogError("Max reconnection attempts.");
+            _isReconnecting = false;
+            _reconnectAttempts = 0;
+            SceneManager.LoadScene(endgameSceneName);
+            yield break;
+        }
+
+        float delay = ReconnectBaseDelaySeconds * _reconnectAttempts;
+        Debug.Log("Reconnecting");
+        yield return new WaitForSeconds(delay);
+
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnected;
+            NetworkManager.Singleton.Shutdown();
+        }
+
+        // Wait for NGO Shutdown to complete before reconnecting ... 
+        yield return new WaitForSeconds(0.5f);
+
+        _isReconnecting = false;
+        _ = StartAsClientAsync(_currentSession);
     }
 
     private string GetRelayCode(ISession session)

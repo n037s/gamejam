@@ -16,7 +16,7 @@ public class CallOthersOnCreated : MonoBehaviour
             
             // This method can be called from Ressources_collector to initialize the UI when the prefab is created.
 
-             GameObject shopPanel = GameObject.FindWithTag("ShopPanel");
+            GameObject shopPanel = GameObject.FindWithTag("ShopPanel");
             if (shopPanel != null)
             {
                 Achats AchatsInstance = shopPanel.GetComponent<Achats>();
@@ -36,6 +36,24 @@ public class CallOthersOnCreated : MonoBehaviour
             else
             {
                 Debug.LogError("ShopPanel object with tag 'ShopPanel' not found in the scene.");
+            }
+
+            GameObject ScorePanel = GameObject.FindWithTag("ScorePanel");
+            if (ScorePanel != null)
+            {
+                ScoreDisplay scoreScipt = ScorePanel.GetComponent<ScoreDisplay>();
+                if (scoreScipt != null)
+                {
+                    scoreScipt.onPrefabCreated();
+                }
+                else
+                {
+                    Debug.LogWarning("Could not find the script for score update");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("LEO - could not find scorePanel");
             }
         }   
 

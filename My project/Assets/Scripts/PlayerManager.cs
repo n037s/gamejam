@@ -34,6 +34,8 @@ public class PlayerManager : NetworkBehaviour
     {
         isCurrentPlayer = IsOwner;
 
+        score.OnValueChanged += OnScoreChanged;
+
         Transform lifeBar = transform.Find("LifeBarCanvas");
         if (lifeBar != null)
         {
@@ -44,7 +46,17 @@ public class PlayerManager : NetworkBehaviour
             Debug.LogWarning("LifeBar child not found.");
         }
     }
+
+    public override void OnNetworkDespawn()
+    {
+        score.OnValueChanged -= OnScoreChanged;
+    }
     
+    private void OnScoreChanged(int previousValue, int newValue)
+    {
+        Debug.Log("LEO - score updated");
+    }
+
     void Start()
     {
     }
@@ -97,7 +109,6 @@ public class PlayerManager : NetworkBehaviour
             if (killerManager != null)
             {
                 killerManager.score.Value += 10;
-                killerManager.UpdateScore();
             }
         }
 
@@ -120,7 +131,7 @@ public class PlayerManager : NetworkBehaviour
         // Immobilise l'objet
 
         ClientAuthoritativeMovement ClientAuthoritativeMovementInstance = GetComponent<ClientAuthoritativeMovement>();
-        int TempSpeed = ClientAuthoritativeMovementInstance.Speed;
+        int TempSpeed = (int) ClientAuthoritativeMovementInstance.Speed;
         ClientAuthoritativeMovementInstance.Speed = 0; 
 
         //Bloque les tirs
@@ -149,7 +160,6 @@ public class PlayerManager : NetworkBehaviour
             score.Value = value;
         else
             SetScoreServerRpc(value);
-        UpdateScore();
     }
 
     public void AddScore(int amount)
@@ -158,38 +168,6 @@ public class PlayerManager : NetworkBehaviour
             score.Value += amount;
         else
             AddScoreServerRpc(amount);
-        UpdateScore();
-    }
-
-    public void UpdateScore()
-    {
-        if (isCurrentPlayer)
-        {
-            Debug.Log("UpdateScore for main player");
-            GameObject scoreGameObject = GameObject.FindWithTag("ScoreLabel");
-            if (scoreGameObject != null)
-            {
-                Debug.Log("Score game object is found");
-
-                UIDocument uiScore = scoreGameObject.GetComponent<UIDocument>();
-                if (uiScore != null)
-                {
-                    Debug.Log("Ui score found");
-                    var root = uiScore.rootVisualElement;
-                    if (root != null)
-                    {
-                        Debug.Log("root found");
-                        var scoreLabel = root.Q<Label>("ScoreLabel");
-
-                        if (scoreLabel != null)
-                        {
-                            Debug.Log($"scorelabel found, setting : {score.Value.ToString()}");
-                            scoreLabel.text = score.Value.ToString();
-                        }
-                    }
-                }
-            }
-        }
     }
 
     [ServerRpc(RequireOwnership = false)]
