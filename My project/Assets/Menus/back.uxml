@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement data-source="project://database/Assets/Blocks/MultiplayerSession/Settings/SessionSettings.asset?fileID=11400000&amp;guid=0bf4e1684added44da254017c7fc41b2&amp;type=2#SessionSettings" class="blocks-container--horizontal blocks-container--horizontal--grow" style="height: 100%; width: 100%; flex-direction: row; align-items: center; justify-content: center; align-self: flex-start;">
+        <ui:Image name="Image" scale-mode="StretchToFill" source="" style="width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/Menus/Sprite/Menu.png?fileID=-901912484&amp;guid=2a18bc02d2e58d348b2fd403ca8f2707&amp;type=3#Menu_0&quot;);"/>
+    </ui:VisualElement>
+</ui:UXML>
