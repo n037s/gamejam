@@ -25,6 +25,11 @@ public class Achats : MonoBehaviour
     [SerializeField] private List<int> Life_increase;
     [SerializeField] private List<int> Speed_increase;
 
+    public AudioSource audioSource;
+    public AudioClip sonAchatArme;
+    public AudioClip sonAchatDefense;
+    public AudioClip sonAchatVitesse;
+
     //Status d'amélioration
     public int canon_level = 0;
     public int murailles_level = 0; 
@@ -115,7 +120,8 @@ public class Achats : MonoBehaviour
            
         if (ressourcesCollectorInstance.compteur_bois >= Prix_bois_canon[canon_level] && ressourcesCollectorInstance.compteur_pierre >= Prix_pierre_canon[canon_level] && ressourcesCollectorInstance.compteur_fer >= Prix_fer_canon[canon_level])
         {
-
+            audioSource.clip = sonAchatArme;
+            audioSource.Play();
 
             ressourcesCollectorInstance.compteur_bois -= Prix_bois_canon[canon_level];
             ressourcesCollectorInstance.compteur_pierre -= Prix_pierre_canon[canon_level];
@@ -162,7 +168,8 @@ public void AchatMurailles()
            
         if (ressourcesCollectorInstance.compteur_bois >= Prix_bois_murailles[murailles_level] && ressourcesCollectorInstance.compteur_pierre >= Prix_pierre_murailles[murailles_level] && ressourcesCollectorInstance.compteur_fer >= Prix_fer_murailles[murailles_level])
         {
-
+            audioSource.clip = sonAchatDefense;
+            audioSource.Play();
 
             ressourcesCollectorInstance.compteur_bois -= Prix_bois_murailles[murailles_level];
             ressourcesCollectorInstance.compteur_pierre -= Prix_pierre_murailles[murailles_level];
@@ -208,7 +215,8 @@ public void AchatMoteur()
            
         if (ressourcesCollectorInstance.compteur_bois >= Prix_bois_moteur[moteur_level] && ressourcesCollectorInstance.compteur_pierre >= Prix_pierre_moteur[moteur_level] && ressourcesCollectorInstance.compteur_fer >= Prix_fer_moteur[moteur_level])
         {
-
+            audioSource.clip = sonAchatVitesse;
+            audioSource.Play();
 
             ressourcesCollectorInstance.compteur_bois -= Prix_bois_moteur[moteur_level];
             ressourcesCollectorInstance.compteur_pierre -= Prix_pierre_moteur[moteur_level];

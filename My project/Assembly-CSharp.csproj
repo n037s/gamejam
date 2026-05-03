@@ -57,6 +57,7 @@
     <Compile Include="Assets\Menus\SessionMenuController.cs" />
     <Compile Include="Assets\Scripts\Achats.cs" />
     <Compile Include="Assets\Scripts\ScoreDisplay.cs" />
+    <Compile Include="Assets\Scripts\AudioPlayer.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Menus\BackManager.cs" />
