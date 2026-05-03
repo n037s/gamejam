@@ -43,7 +43,7 @@
                         </Bindings>
                     </Blocks.Sessions.Common.SessionStatusLabel>
                 </engine:VisualElement>
-                <engine:Button name="StartButton" text="Restart" class="blocks-button" style="top: 5px; width: 25%;"/>
+                <engine:Button name="ReStartButton" text="Restart" class="blocks-button" style="top: 5px; width: 25%;"/>
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" template="CurrentSession" style="width: 50%; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; justify-content: center; align-items: center; height: 100%;">

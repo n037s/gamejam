@@ -1,8 +1,8 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement data-source="project://database/Assets/Blocks/MultiplayerSession/Settings/SessionSettings.asset?fileID=11400000&amp;guid=0bf4e1684added44da254017c7fc41b2&amp;type=2#SessionSettings" class="blocks-container--horizontal blocks-container--horizontal--grow" style="height: 377px;">
-        <engine:VisualElement xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" template="CurrentSession">
-            <engine:VisualElement class="blocks-modal">
-                <engine:VisualElement class="blocks-container--horizontal blocks-container--space-between blocks-modal--left-aligned-text">
+    <ui:VisualElement data-source="project://database/Assets/Blocks/MultiplayerSession/Settings/SessionSettings.asset?fileID=11400000&amp;guid=0bf4e1684added44da254017c7fc41b2&amp;type=2#SessionSettings" class="blocks-container--horizontal blocks-container--horizontal--grow" style="height: 100%; width: 100%; flex-direction: row; align-items: center; justify-content: center; align-self: flex-start;">
+        <engine:VisualElement xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" template="CurrentSession" name="VisualElement" style="width: 60%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 80%;">
+            <engine:VisualElement class="blocks-modal" style="width: 100%; height: 100%;">
+                <engine:VisualElement class="blocks-container--horizontal blocks-container--space-between blocks-modal--left-aligned-text" style="flex-direction: row; align-items: flex-end; justify-content: center;">
                     <Blocks.Sessions.Common.SessionNameLabel class="blocks-header blocks-element--space-right">
                         <Bindings>
                             <engine:DataBinding property="SessionType" data-source-path="sessionType" binding-mode="ToTarget"/>
@@ -14,7 +14,7 @@
                         </Bindings>
                     </Blocks.Sessions.Common.PlayerCountLabel>
                 </engine:VisualElement>
-                <engine:VisualElement class="blocks-container--horizontal blocks-container--space-between blocks-element--space-bottom blocks-modal--left-aligned-text">
+                <engine:VisualElement class="blocks-container--horizontal blocks-container--space-between blocks-element--space-bottom blocks-modal--left-aligned-text" style="flex-direction: row; justify-content: center;">
                     <Blocks.Sessions.Common.PlayerNameLabel class="blocks-element--space-right blocks-header blocks-header--sm">
                         <Bindings>
                             <engine:DataBinding property="SessionType" data-source-path="sessionType" binding-mode="ToTarget"/>
@@ -26,7 +26,7 @@
                         </Bindings>
                     </Blocks.Sessions.Common.CopySessionCodeElement>
                 </engine:VisualElement>
-                <Blocks.Sessions.Common.PlayerListViewElement class="blocks-element--space-bottom">
+                <Blocks.Sessions.Common.PlayerListViewElement class="blocks-element--space-bottom" style="align-self: center;">
                     <Bindings>
                         <engine:DataBinding property="SessionType" data-source-path="sessionType" binding-mode="ToTarget"/>
                     </Bindings>
@@ -36,7 +36,7 @@
                         <engine:DataBinding property="SessionType" binding-mode="ToTarget" data-source-path="sessionType"/>
                     </Bindings>
                 </Blocks.Sessions.Common.LeaveSessionButton>
-                <engine:VisualElement class="blocks-container--horizontal blocks-container--right">
+                <engine:VisualElement class="blocks-container--horizontal blocks-container--right" style="-unity-text-align: upper-center; justify-content: center; align-items: center;">
                     <Blocks.Sessions.Common.SessionStatusLabel class="blocks-element--space-right blocks-label">
                         <Bindings>
                             <engine:DataBinding property="SessionType" data-source-path="sessionType" binding-mode="ToTarget"/>

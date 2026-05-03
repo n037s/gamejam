@@ -3363,7 +3363,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreDisplay
   timerLabel: {fileID: 1554189245}
-  score: 0
 --- !u!1 &1633290663
 GameObject:
   m_ObjectHideFlags: 0
@@ -3642,7 +3641,7 @@ MonoBehaviour:
     m_InternalValue: 300
   sessionType: default-session
   maxRelayConnections: 20
-  isDebugMode: 1
+  isDebugMode: 0
 --- !u!4 &1698385164
 Transform:
   m_ObjectHideFlags: 0

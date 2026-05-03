@@ -3,6 +3,7 @@ using Unity.Netcode;
 using UnityEngine.UIElements;
 using System.Collections;
 using Unity.Multiplayer.Center.NetcodeForGameObjectsExample;
+using Unity.Collections;
 
 [RequireComponent(typeof(NetworkObject))]
 public class PlayerManager : NetworkBehaviour
@@ -30,11 +31,21 @@ public class PlayerManager : NetworkBehaviour
         NetworkVariableWritePermission.Server
     );
 
+    public NetworkVariable<FixedString64Bytes> networkPlayerName = new NetworkVariable<FixedString64Bytes>(
+        new FixedString64Bytes("Player"),
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Server
+    );
+
     public override void OnNetworkSpawn()
     {
         isCurrentPlayer = IsOwner;
 
         score.OnValueChanged += OnScoreChanged;
+        networkPlayerName.OnValueChanged += OnPlayerNameChanged;
+
+        // Apply name that is already synced. 
+        gameObject.name = networkPlayerName.Value.ToString();
 
         Transform lifeBar = transform.Find("LifeBarCanvas");
         if (lifeBar != null)
@@ -45,11 +56,35 @@ public class PlayerManager : NetworkBehaviour
         {
             Debug.LogWarning("LifeBar child not found.");
         }
+
+        if (IsOwner)
+        {
+            string playerName = PlayerPrefs.GetString("PlayerName", $"Player {OwnerClientId}");
+            Debug.Log($"LEO - retrieve the player name {playerName}");
+            SetNameServerRpc(playerName);
+        }
+
+        GameObject scorePanel = GameObject.FindWithTag("ScorePanel");
+        if (scorePanel != null)
+        {
+            ScoreDisplay sd = scorePanel.GetComponent<ScoreDisplay>();
+            if (sd != null)
+                sd.RegisterPlayer(this);
+        }
     }
 
     public override void OnNetworkDespawn()
     {
         score.OnValueChanged -= OnScoreChanged;
+        networkPlayerName.OnValueChanged -= OnPlayerNameChanged;
+        
+        GameObject scorePanel = GameObject.FindWithTag("ScorePanel");
+        if (scorePanel != null)
+        {
+            ScoreDisplay sd = scorePanel.GetComponent<ScoreDisplay>();
+            if (sd != null)
+                sd.UnregisterPlayer(this);
+        }
     }
     
     private void OnScoreChanged(int previousValue, int newValue)
@@ -171,11 +206,31 @@ public class PlayerManager : NetworkBehaviour
             AddScoreServerRpc(amount);
     }
 
+    private void OnPlayerNameChanged(FixedString64Bytes previous, FixedString64Bytes current)
+    {
+        gameObject.name = current.ToString();
+
+        GameObject scorePanel = GameObject.FindWithTag("ScorePanel");
+        if (scorePanel != null)
+        {
+            ScoreDisplay sd = scorePanel.GetComponent<ScoreDisplay>();
+            if (sd != null)
+                sd.RefreshUI();
+        }
+    }
+
     [ClientRpc]
     private void FreezePlayerClientRpc()
     {
         if (!isFrozen)
             StartCoroutine(FreezeFor10Seconds());
+    }
+
+    [ServerRpc]
+    private void SetNameServerRpc(string playerName)
+    {
+        networkPlayerName.Value = new FixedString64Bytes(playerName);
+        gameObject.name = playerName;
     }
 
     [ServerRpc(RequireOwnership = false)]

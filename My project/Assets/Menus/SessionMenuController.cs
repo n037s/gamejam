@@ -24,7 +24,12 @@ namespace menu
             m_StartButton = root.Q<Button>("StartButton");
             if (m_StartButton != null)
             {
+                Debug.Log("LEO - added On Start button clicked");
                 m_StartButton.clicked += OnStartClicked;
+            }
+            else
+            {
+                Debug.Log("Could not find the button...");
             }
 
             _ = InitSessionAsync();
@@ -60,14 +65,21 @@ namespace menu
 
         private void UpdateStartButtonVisibility()
         {
+            Debug.Log("Trying to update button visibility");
             if (m_StartButton == null || m_Session == null) return;
 
+            Debug.Log("LEO - passed the if statement");
+
             bool isHost = m_Session.IsHost;
+
+            Debug.Log($"LEO - je suis host {isHost}");
             m_StartButton.style.display = isHost ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
         private async void OnStartClicked()
         {
+            Debug.Log("LEO - start button clicked");
+
             if (m_Session == null || !m_Session.IsHost)
             {
                 Debug.LogWarning("Only the host can start the game");
@@ -103,6 +115,7 @@ namespace menu
 
         private void OnSessionChanged()
         {
+            Debug.Log("LEO - session changed");
             var session = m_Session;
             if (session == null) return;
 

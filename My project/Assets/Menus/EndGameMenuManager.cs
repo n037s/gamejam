@@ -25,7 +25,7 @@ public class EndGameMenuManager : MonoBehaviour
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
         m_ScoreboardLabel = root.Q<Label>("ScoreboardLabel");
-        m_RestartButton = root.Q<Button>("StartButton");
+        m_RestartButton = root.Q<Button>("ReStartButton");
 
         UpdateDisplay();
         _ = InitSessionAsync();

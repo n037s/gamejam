@@ -30,6 +30,8 @@ namespace menu
 
         private void OnPseudoChanged(ChangeEvent<string> evt)
         {
+            PlayerPrefs.SetString("PlayerName", evt.newValue);
+            PlayerPrefs.Save();
             _ = UpdatePlayerNameAsync(evt.newValue);
         }
 
