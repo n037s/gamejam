@@ -5,7 +5,7 @@
                 <ui:Label text="NOM DU JEU" class="blocks-header blocks-header--space-bottom" style="-unity-text-align: upper-center;"/>
                 <ui:TextField name="PseudoField" placeholder-text="Enter your pseudo" hide-placeholder-on-focus="true" class="blocks-textfield blocks-element--space-right" style="top: 40px; height: 37px; width: 100%; color: rgb(0, 0, 0); -unity-text-outline-color: rgb(255, 255, 255); -unity-background-image-tint-color: rgb(0, 0, 0);"/>
                 <ui:Label text="Create a session" style="top: 70px; -unity-text-align: upper-center;"/>
-                <Blocks.Sessions.CreateSessionElement name="CreateSessionElement" style="height: 125px; width: 428px; align-self: flex-start; position: relative; top: 40px; left: 10px;">
+                <Blocks.Sessions.CreateSessionElement name="CreateSessionElement" style="height: 125px; width: 428px; align-self: flex-start; position: relative; top: 40px; left: 10px; color: rgb(255, 255, 255);">
                     <Bindings>
                         <ui:DataBinding property="SessionSettings" binding-mode="ToTarget" data-source-path=""/>
                     </Bindings>
