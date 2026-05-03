@@ -15,6 +15,7 @@ TagManager:
   - ScoreLabel
   - GameManager
   - ScorePanel
+  - Map
   layers:
   - Default
   - TransparentFX

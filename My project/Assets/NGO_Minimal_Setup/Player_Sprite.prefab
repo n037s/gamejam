@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 2412549449670687643}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -251,6 +251,11 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 4857a5c513e4a1b489cd20b13ece700c, type: 2}
   - {fileID: 9100000, guid: d6764fc2b66fe904ab5b6d5531ed1737, type: 2}
   - {fileID: 9100000, guid: d061b92724863994b983ab6bbd8374b0, type: 2}
+  skinIndex:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: -1
 --- !u!1 &2725572366569520041
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +344,7 @@ GameObject:
   - component: {fileID: 6676281247364298131}
   - component: {fileID: 4615334779637519296}
   - component: {fileID: 59287176796860539}
-  - component: {fileID: 3398272839939687378}
+  - component: {fileID: 8802361815478874275}
   - component: {fileID: 4015828345772416446}
   - component: {fileID: 7764816242052717954}
   - component: {fileID: 1359132063682571489}
@@ -432,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3196304859
+  GlobalObjectIdHash: 1818696941
   InScenePlacedSourceGlobalObjectIdHash: 2187560420
   DeferredDespawnTick: 0
   Ownership: 1
@@ -491,7 +496,7 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &3398272839939687378
+--- !u!114 &8802361815478874275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -500,9 +505,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4332898844952181703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455521db0066b4b4280c34d2fdba6763, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c296c876a56425448c3c25b4ce69fcd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.Multiplayer.Center.NetcodeForGameObjectsExample::Unity.Multiplayer.Center.NetcodeForGameObjectsExample.ClientAuthoritativeMovement
+  m_EditorClassIdentifier: Assembly-CSharp::Unity.Multiplayer.Center.NetcodeForGameObjectsExample.ClientAuthoritativeMovement
   ShowTopMostFoldoutHeaderGroup: 1
   Speed: 5
 --- !u!114 &4015828345772416446
@@ -581,6 +586,7 @@ MonoBehaviour:
   fireRate: 0.3
   spawnOffset: 0.4
   damage: 10
+  isdead: 0
 --- !u!114 &-9177563801063266133
 MonoBehaviour:
   m_ObjectHideFlags: 0

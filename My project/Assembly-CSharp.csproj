@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\set_color_for_player.cs" />
     <Compile Include="Assets\Menus\JoinSessionMenuController.cs" />
     <Compile Include="Assets\Scripts\color_pierre.cs" />
+    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\color_fer.cs" />
     <Compile Include="Assets\Scripts\Ressources_collector.cs" />
     <Compile Include="Assets\Scripts\Ressources_spawner.cs" />

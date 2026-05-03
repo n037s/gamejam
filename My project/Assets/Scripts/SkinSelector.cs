@@ -6,7 +6,7 @@ public class SkinSelector : NetworkBehaviour
 {
     public List<RuntimeAnimatorController> skins;
     
-    private NetworkVariable<int> skinIndex = new NetworkVariable<int>(
+    public NetworkVariable<int> skinIndex = new NetworkVariable<int>(
         -1,
         NetworkVariableReadPermission.Everyone,
         NetworkVariableWritePermission.Server
@@ -46,6 +46,24 @@ public class SkinSelector : NetworkBehaviour
         if (index >= 0 && index < skins.Count)
         {
             GetComponent<Animator>().runtimeAnimatorController = skins[index];
+
+            // Grece and Incas
+            if (index == 0 || index == 3)
+            {
+                this.transform.localPosition = new Vector3(0, 0.3f, 0);
+            }
+
+            // Tolosa
+            if (index == 2)
+            {
+                this.transform.localPosition = new Vector3(0, -0.9f, 0);
+            }
+
+            // Kulture
+            if (index == 1)
+            {
+                this.transform.localPosition = new Vector3(0, -0.25f, 0);
+            }
         }
     }
 }
