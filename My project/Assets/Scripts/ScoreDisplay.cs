@@ -10,7 +10,6 @@ public class ScoreDisplay : MonoBehaviour
 
     public void onPrefabCreated()
     {
-        Debug.Log("LEO - prefab registery");
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject player in players)
         {

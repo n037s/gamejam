@@ -3627,7 +3627,7 @@ MonoBehaviour:
     m_InternalValue: 300
   sessionType: default-session
   maxRelayConnections: 20
-  isDebugMode: 1
+  isDebugMode: 0
 --- !u!4 &1698385164
 Transform:
   m_ObjectHideFlags: 0

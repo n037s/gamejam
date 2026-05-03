@@ -45,18 +45,17 @@ public class ResourcePanelController : MonoBehaviour
 
         foreach (GameObject player in players)
         {
-            playerManagerInstance = player.GetComponent<PlayerManager>();
-            if (playerManagerInstance.isCurrentPlayer)
+            PlayerManager pm = player.GetComponent<PlayerManager>();
+            if (pm != null && pm.isCurrentPlayer)
             {
+                playerManagerInstance = pm;
                 playerShootInstance = player.GetComponent<PlayerShoot>();
                 clientAuthoritativeMovementInstance = player.GetComponent<ClientAuthoritativeMovement>();
+
+                playerFound = true;
+                RefreshUI();
+                break;
             }
-
-
-        
-        playerFound = true;
-        
-        RefreshUI();
         }
     }
 
@@ -85,11 +84,25 @@ public class ResourcePanelController : MonoBehaviour
  
 
     void Update()
-
     {
-        
+        if (!playerFound)
+        {
+            // Retry to find the player ... 
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach ( GameObject player in players)
+            {
+                PlayerManager pm = player.GetComponent<PlayerManager>();
+                if (pm != null && pm.isCurrentPlayer)
+                {
+                    playerManagerInstance = pm;
+                    playerShootInstance = player.GetComponent<PlayerShoot>();
+                    clientAuthoritativeMovementInstance = player.GetComponent<ClientAuthoritativeMovement>();
+                    playerFound = true;
+                    break;
+                }
+            }
+        }
         if (playerFound == true)
-
             RefreshUI();
         
     }

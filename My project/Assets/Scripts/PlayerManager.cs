@@ -54,7 +54,6 @@ public class PlayerManager : NetworkBehaviour
     
     private void OnScoreChanged(int previousValue, int newValue)
     {
-        Debug.Log("LEO - score updated");
     }
 
     void Start()
@@ -116,7 +115,7 @@ public class PlayerManager : NetworkBehaviour
         if (!isFrozen)
         {
             Debug.Log("Player is notfrozen");
-            StartCoroutine(FreezeFor10Seconds());
+            FreezePlayerClientRpc();
         }
      
 
@@ -149,11 +148,13 @@ public class PlayerManager : NetworkBehaviour
         GetComponent<Collider>().enabled = true;
 
         //On remet la vie au max
-        life.Value = maxLife; 
+        if (IsServer)
+            life.Value = maxLife;
 
 
         isFrozen = false;
     }
+
     public void SetScore(int value)
     {
         if (IsServer)
@@ -168,6 +169,13 @@ public class PlayerManager : NetworkBehaviour
             score.Value += amount;
         else
             AddScoreServerRpc(amount);
+    }
+
+    [ClientRpc]
+    private void FreezePlayerClientRpc()
+    {
+        if (!isFrozen)
+            StartCoroutine(FreezeFor10Seconds());
     }
 
     [ServerRpc(RequireOwnership = false)]
