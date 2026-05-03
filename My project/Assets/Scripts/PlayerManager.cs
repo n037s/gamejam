@@ -146,6 +146,9 @@ public class PlayerManager : NetworkBehaviour
             }
         }
 
+        SkinSelector skinSelectorRef = transform.GetChild(0).GetComponent<SkinSelector>();
+        skinSelectorRef.setDeadSkin();
+
         rb = GetComponent<Rigidbody>();
         if (!isFrozen)
         {
@@ -185,6 +188,9 @@ public class PlayerManager : NetworkBehaviour
         //On remet la vie au max
         if (IsServer)
             life.Value = maxLife;
+
+        SkinSelector skinSelectorRef = transform.GetChild(0).GetComponent<SkinSelector>();
+        skinSelectorRef.setNormalSkin();
 
 
         isFrozen = false;
