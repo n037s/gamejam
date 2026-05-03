@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Multiplayer.Center.NetcodeForGameObjectsExample;
 using System.Collections.Generic;
+using TMPro;
 
 public class Achats : MonoBehaviour
 {
@@ -36,7 +37,18 @@ public class Achats : MonoBehaviour
     private PlayerShoot playerShootInstance;
     private ClientAuthoritativeMovement clientAuthoritativeMovementInstance;
 
-    
+    public TextMeshProUGUI CanonBoisText;
+    public TextMeshProUGUI CanonPierreText;
+    public TextMeshProUGUI CanonFerText;
+
+    public TextMeshProUGUI MurBoisText;
+    public TextMeshProUGUI MurPierreText;
+    public TextMeshProUGUI MurFerText;
+
+    public TextMeshProUGUI MoteurBoisText;
+    public TextMeshProUGUI MoteurPierreText;
+    public TextMeshProUGUI MoteurFerText;
+
     private UpgradeVisible upgradeVisibleInstance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -61,6 +73,18 @@ public class Achats : MonoBehaviour
                 playerShootInstance = player.GetComponent<PlayerShoot>();
                 clientAuthoritativeMovementInstance = player.GetComponent<ClientAuthoritativeMovement>();
                 upgradeVisibleInstance = player.GetComponent<UpgradeVisible>();
+
+                CanonBoisText.text = Prix_bois_canon[canon_level].ToString();
+                CanonPierreText.text = Prix_pierre_canon[canon_level].ToString();
+                CanonFerText.text = Prix_fer_canon[canon_level].ToString();
+
+                MurBoisText.text = Prix_bois_murailles[murailles_level].ToString();
+                MurPierreText.text = Prix_pierre_murailles[murailles_level].ToString();
+                MurFerText.text = Prix_fer_murailles[murailles_level].ToString();
+
+                MoteurBoisText.text = Prix_bois_moteur[moteur_level].ToString();
+                MoteurPierreText.text = Prix_pierre_moteur[moteur_level].ToString();
+                MoteurFerText.text = Prix_fer_moteur[moteur_level].ToString();
 
                 Debug.Log("Ressources_collector created");
                 if (ressourcesCollectorInstance == null)
@@ -102,6 +126,11 @@ public class Achats : MonoBehaviour
             //On améliore les dégats du canon et le niveau du canon
             playerShootInstance.damage += Canon_damage_increase[canon_level];
             canon_level += 1;
+
+            CanonBoisText.text = Prix_bois_canon[canon_level].ToString();
+            CanonPierreText.text = Prix_pierre_canon[canon_level].ToString();
+            CanonFerText.text = Prix_fer_canon[canon_level].ToString();
+
             if (upgradeVisibleInstance != null)
             {
                 upgradeVisibleInstance.UpdateAttackVisibility(canon_level);
@@ -148,6 +177,11 @@ public void AchatMurailles()
             //On améliore les dégats du canon et le niveau du canon
             playerManagerInstance.maxLife += Life_increase[murailles_level];
             murailles_level += 1;
+
+            MurBoisText.text = Prix_bois_murailles[murailles_level].ToString();
+            MurPierreText.text = Prix_pierre_murailles[murailles_level].ToString();
+            MurFerText.text = Prix_fer_murailles[murailles_level].ToString();
+
             //upgradeSkinsInstance = GetComponent<UpgradeSkins>();
             //upgradeSkinsInstance.UpdateDefenseSkin(murailles_level);
             
@@ -198,6 +232,10 @@ public void AchatMoteur()
             //On améliore les dégats du canon et le niveau du canon
             clientAuthoritativeMovementInstance.Speed += Speed_increase[moteur_level];
             moteur_level += 1;
+ 
+            MoteurBoisText.text = Prix_bois_moteur[moteur_level].ToString();
+            MoteurPierreText.text = Prix_pierre_moteur[moteur_level].ToString();
+            MoteurFerText.text = Prix_fer_moteur[moteur_level].ToString();
 
             if (upgradeVisibleInstance != null)
             {
